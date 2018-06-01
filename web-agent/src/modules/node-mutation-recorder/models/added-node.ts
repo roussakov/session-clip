@@ -1,4 +1,6 @@
-export interface AddedNode {
+import {Recordable} from "../../../common-modules/recordable";
+
+export interface AddedNode extends Recordable {
     id:number,
     nodeType:number,
     nodeName:string,

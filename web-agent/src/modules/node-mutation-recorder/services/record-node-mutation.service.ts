@@ -3,6 +3,7 @@ import {AddedNode} from "../models/added-node";
 import {RemovedNode} from "../models/removed-node";
 import {extractAttributes} from "../helpers/extract-attributes.helper";
 import {getUUID, SessionClipNode} from "../../../common-modules/node-mutator/node-mutator";
+import {RecordType} from "../models/record-type";
 
 export class RecordNodeMutationService {
 
@@ -10,7 +11,14 @@ export class RecordNodeMutationService {
 
     addNode(id:number, node:Node) {
         const {nodeType, nodeName} = node;
-        const addedNode:AddedNode = {id, nodeType, nodeName};
+
+        const addedNode:AddedNode = {
+            id,
+            nodeType,
+            nodeName,
+            type:RecordType.addedNode,
+            time: (new Date).toString()
+        };
 
         if((node instanceof Element)) {
             addedNode.attributes = extractAttributes(node.attributes)
@@ -28,11 +36,20 @@ export class RecordNodeMutationService {
     }
 
     removeNode(id:number) {
-        this.nodes.push(<RemovedNode>{id});
+        const node:RemovedNode = {id, type:RecordType.removedNode, time: (new Date).toString()};
+
+        this.nodes.push(node);
     }
 
     mutateNode(id:number, node:Node) {
         const element = <Element>node;
-        this.nodes.push(<MutatedNode>{id:id, attributes: extractAttributes(element.attributes)});
+        const mutatedNode:MutatedNode = {
+            id,
+            attributes: extractAttributes(element.attributes),
+            type: RecordType.mutatedNode,
+            time: (new Date).toString()
+        };
+
+        this.nodes.push(mutatedNode);
     }
 }

@@ -1,6 +1,6 @@
-import {collectDom} from "./modules/node-mutation-recorder/dom-collector";
-import {observeDom} from "./modules/node-mutation-recorder/dom-observer";
+import {startDomCollector} from "./modules/node-mutation-recorder/dom-collector";
+import {startDomObserver} from "./modules/node-mutation-recorder/dom-observer";
 
 //register bootstrap pipeline
-collectDom();
-observeDom();
+startDomCollector();
+startDomObserver();

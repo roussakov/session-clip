@@ -3,7 +3,7 @@ import {iterateNode} from "../../common-modules/node-iterator/node-iterator";
 import {getUUID, SessionClipNode, setUUID} from "../../common-modules/node-mutator/node-mutator";
 
 
-export const collectDom = () => {
+export const startDomCollector = () => {
     const nodeMutationService = window["collectDom"] = new RecordNodeMutationService();
 
     iterateNode(document.documentElement, (node:Node) => {

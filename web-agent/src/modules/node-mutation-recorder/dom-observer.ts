@@ -4,7 +4,7 @@ import {NodeAttributesChangedHandler} from "./mutation-handlers/node-attributes-
 import {NodeAddedHandler} from "./mutation-handlers/node-added.handler";
 import {observe} from "../../common-modules/dom-observer/dom-observer";
 
-export const observeDom = () => {
+export const startDomObserver = () => {
     const nodeMutationService = window["observeDom"] = new RecordNodeMutationService();
 
     const handlers = [NodeAddedHandler, NodeRemovedHandler, NodeAttributesChangedHandler]

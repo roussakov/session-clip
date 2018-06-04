@@ -2,7 +2,7 @@ import {MutatedNode} from "../models/mutated-node";
 import {AddedNode} from "../models/added-node";
 import {RemovedNode} from "../models/removed-node";
 import {extractAttributes} from "../helpers/extract-attributes.helper";
-import {getUUID, SessionClipNode} from "../../../common-modules/node-mutator/node-mutator";
+import {getUUID, SessionClipNode} from "../../../common/modules/node-mutator/node-mutator";
 import {RecordType} from "../models/record-type";
 
 export class RecordNodeMutationService {

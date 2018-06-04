@@ -1,6 +1,6 @@
 import {NodeMutationHandler} from "./abstract-node-mutation.handler";
-import {iterateNode} from "../../../common-modules/node-iterator/node-iterator";
-import {getUUID, SessionClipNode, setUUID} from "../../../common-modules/node-mutator/node-mutator";
+import {iterateNode} from "../../../common/modules/node-iterator/node-iterator";
+import {getUUID, SessionClipNode, setUUID} from "../../../common/modules/node-mutator/node-mutator";
 
 export class NodeAddedHandler extends NodeMutationHandler {
     handle(addedNode:Node) {

@@ -1,4 +1,4 @@
-import {Recordable} from "../../../common-modules/recordable";
+import {Recordable} from "../../../common/modules/recordable";
 
 export interface ViewportResize extends Recordable {
     width:number;

@@ -1,7 +1,10 @@
+import {WebSocket, webSocketInstance} from "../../../core/services/web-socket.service";
+
 export class EventRecorderService {
 
-    private events:any[] = [];
+    constructor(private socket: WebSocket) {}
 
-    record = (event:any) => this.events.push(event);
-
+    record = (event:any) => this.socket.send("record", event);
 }
+
+export const eventRecorderServiceInstance = new EventRecorderService(webSocketInstance);

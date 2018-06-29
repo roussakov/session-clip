@@ -4,10 +4,11 @@ import {RemovedNode} from "../models/removed-node";
 import {extractAttributes} from "../helpers/extract-attributes.helper";
 import {getUUID, SessionClipNode} from "../../../common/modules/node-mutator/node-mutator";
 import {RecordType} from "../models/record-type";
+import {WebSocket, webSocketInstance} from "../../../core/services/web-socket.service";
 
 export class RecordNodeMutationService {
 
-    private nodes:Array<any> = [];
+    constructor(private socket: WebSocket){}
 
     addNode(id:number, node:Node) {
         const {nodeType, nodeName} = node;
@@ -32,13 +33,13 @@ export class RecordNodeMutationService {
             addedNode.prevSiblingId = getUUID(<SessionClipNode>node.previousSibling);
         }
 
-        this.nodes.push(addedNode);
+        this.socket.send("record", addedNode);
     }
 
     removeNode(id:number) {
         const node:RemovedNode = {id, type:RecordType.removedNode, time: (new Date).toString()};
 
-        this.nodes.push(node);
+        this.socket.send("record", node);
     }
 
     mutateNode(id:number, node:Node) {
@@ -50,6 +51,8 @@ export class RecordNodeMutationService {
             time: (new Date).toString()
         };
 
-        this.nodes.push(mutatedNode);
+        this.socket.send("record", mutatedNode);
     }
 }
+
+export const recordNodeMutationServiceInstance = new RecordNodeMutationService(webSocketInstance);

@@ -1,9 +1,11 @@
 import {startDomCollector} from "./modules/node-mutation-recorder/dom-collector";
 import {startDomObserver} from "./modules/node-mutation-recorder/dom-observer";
 import {startEventCollector} from "./modules/event-recorder/event-collector";
+import {startSession} from "./core/start-session";
 
-
-//register bootstrap pipeline
-startDomCollector();
-startDomObserver();
-startEventCollector();
+startSession().then(() => {
+    //run recorder algorithm
+    startDomCollector();
+    startDomObserver();
+    startEventCollector();
+});

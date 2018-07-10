@@ -2,7 +2,7 @@ const START_SESSION_EVENT = "authentication";
 const SESSION_CREATED_EVENT = "authenticated";
 
 export interface SessionData {
-    id: string;
+    sessionId: string;
 }
 
 export class Session {

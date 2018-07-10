@@ -8,5 +8,5 @@ export function startSession() {
     return webSocketInstance.connect()
         .then(socket => new Session(socket))
         .then(session => session.start())
-        .then((data: SessionData) => sessionStorage.add("sessionClip.sessionId", data.id));
+        .then((data: SessionData) => sessionStorage.add("sessionClip.sessionId", data.sessionId));
 }

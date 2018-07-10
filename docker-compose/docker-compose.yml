@@ -1,5 +1,34 @@
-version: "2"
+version: "3.4"
 services:
+  mongo:
+    image: mongo:3.6.2
+    ports:
+      - "8080:80"
+
+  socket-server:
+    image: socket_server
+    build:
+      context: ./../socket-server
+      dockerfile: Dockerfile
+    links:
+      - mongo
+    ports:
+      - "8081:3000"
+    volumes:
+      - ./../socket-server:/app
+
+  session-service:
+    image: socket_server
+    build:
+      context: ./../socket-server
+      dockerfile: Dockerfile
+    links:
+      - mongo
+    ports:
+      - "8082:3000"
+    volumes:
+      - ./../session-service:/app
+
   mongo:
     image: mongo:3.6.2
     ports:

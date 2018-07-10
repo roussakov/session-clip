@@ -27,4 +27,4 @@ export class WebSocket {
     }
 }
 
-export const webSocketInstance = new WebSocket(io, {uri:"http://localhost:3000"});
+export const webSocketInstance = new WebSocket(io, {uri:"http://localhost:8081"});

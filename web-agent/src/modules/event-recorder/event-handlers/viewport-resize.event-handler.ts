@@ -17,7 +17,7 @@ export class ViewportResizeEventHandler extends BaseEventHandler {
             time: (new Date).toString()
         };
 
-        this.eventRecorderService.record(record);
+        this.eventRecorderService.recordViewPortResize(record);
     }
 
 }

@@ -12,7 +12,7 @@ export class ClickEventHandler extends BaseEventHandler {
     handler(e:MouseEvent):void {
         const record:MouseClick = {x: e.x, y: e.y, type:EventType.Click, time: (new Date()).toString()};
 
-        this.eventRecorderService.record(record);
+        this.eventRecorderService.recordMouseClick(record);
     }
 
 }

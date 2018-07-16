@@ -17,7 +17,7 @@ export class ScrollEventHandler extends BaseEventHandler {
             time: (new Date).toString()
         };
 
-        this.eventRecorderService.record(record);
+        this.eventRecorderService.recordScroll(record);
     }
 
 }

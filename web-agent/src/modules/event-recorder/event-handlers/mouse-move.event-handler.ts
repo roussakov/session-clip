@@ -11,7 +11,7 @@ export class MouseMoveEventHandler extends BaseEventHandler {
 
     handler(e:MouseEvent):void {
         const record:MouseMove = {x:e.x, y:e.y, type: EventType.MouseMove, time:(new Date).toString()};
-        this.eventRecorderService.record(record);
+        this.eventRecorderService.recordMouseMove(record);
     }
 
 }

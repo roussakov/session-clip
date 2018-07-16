@@ -33,13 +33,13 @@ export class RecordNodeMutationService {
             addedNode.prevSiblingId = getUUID(<SessionClipNode>node.previousSibling);
         }
 
-        this.socket.send("record", addedNode);
+        this.socket.send("addedNodeRecord", addedNode);
     }
 
     removeNode(id:number) {
         const node:RemovedNode = {id, type:RecordType.removedNode, time: (new Date).toString()};
 
-        this.socket.send("record", node);
+        this.socket.send("removedNodeRecord", node);
     }
 
     mutateNode(id:number, node:Node) {
@@ -51,7 +51,7 @@ export class RecordNodeMutationService {
             time: (new Date).toString()
         };
 
-        this.socket.send("record", mutatedNode);
+        this.socket.send("mutatedNodeRecord", mutatedNode);
     }
 }
 

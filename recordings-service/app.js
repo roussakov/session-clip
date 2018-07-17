@@ -7,16 +7,21 @@ const amqp = require('amqplib/callback_api');
 
 const devConfig = require('./config/development');
 
-const sessionRouter = require('./routes/session');
 const app = express();
 
+const handleAddedNode = require("./handlers/added-node.handler");
+const handleRemovedNode = require("./handlers/removed-node.handler");
+const handleMutatedNode = require("./handlers/mutated-node.handler");
+const handleMouseClickEvent = require("./handlers/mouse-click-event.handler");
+const handleMouseMoveEvent = require("./handlers/mouse-move-event.handler");
+const handleScrollEvent = require("./handlers/scroll-event.handler");
+const handleViewPortResizeEvent = require("./handlers/view-port-resize-event.handler");
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/session', sessionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,21 +50,25 @@ function connect () {
     return mongoose.connect(devConfig.db, options).connection;
 }
 
-//test
+
 amqp.connect('amqp://rabbitmq', (err, conn) => {
    conn.createChannel((err, ch) => {
-       const q = "records";
-
-       ch.assertQueue(q, {durable: false});
-       ch.consume(q, (msg) => {
-
-           console.log(JSON.parse(msg.content.toString()))
-
-       }, {noAck:true})
+       consumeFromQueue(ch, "addedNodeRecords", handleAddedNode);
+       consumeFromQueue(ch, "removedNodeRecords", handleRemovedNode);
+       consumeFromQueue(ch, "mutatedNodeRecords", handleMutatedNode);
+       consumeFromQueue(ch, "mouseClickRecords", handleMouseClickEvent);
+       consumeFromQueue(ch, "scrollRecords", handleScrollEvent);
+       consumeFromQueue(ch, "mouseMoveRecords", handleMouseMoveEvent);
+       consumeFromQueue(ch, "viewPortResizeRecords", handleViewPortResizeEvent);
    })
 });
 
 
-
+function consumeFromQueue(channel, queue, handler) {
+    channel.assertQueue(queue, {durable: false});
+    channel.consume(queue, (msg) => {
+        handler(JSON.parse(msg.content.toString()))
+    }, {noAck:true})
+}
 
 module.exports = app;

@@ -2,7 +2,17 @@ const express = require('express');
 const router = express.Router();
 const SessionModel = new require("./../models/session");
 
-router.post('/', function (req, res) {
+router.get('/', (req, res) => {
+    SessionModel.find().then(
+        sessions => sessions.map(session => ({
+            sessionId: session._id,
+            userId: session.userId,
+            createdAt: session.createdAt
+        }))
+    ).then(sessions => res.send(sessions));
+});
+
+router.post('/', (req, res) => {
     const session = new SessionModel(req.body);
 
     session.save((err, sessionRecord) => {

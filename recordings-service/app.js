@@ -7,6 +7,8 @@ const amqp = require('amqplib/callback_api');
 
 const devConfig = require('./config/development');
 
+const recordingsRouter = require('./routes/recordings');
+const initialNodes = require('./routes/initial-nodes');
 const app = express();
 
 const handleAddedNode = require("./handlers/added-node.handler");
@@ -16,12 +18,15 @@ const handleMouseClickEvent = require("./handlers/mouse-click-event.handler");
 const handleMouseMoveEvent = require("./handlers/mouse-move-event.handler");
 const handleScrollEvent = require("./handlers/scroll-event.handler");
 const handleViewPortResizeEvent = require("./handlers/view-port-resize-event.handler");
+const handleNodeInitialState = require("./handlers/node-initial-state.handler");
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use('/recordings', recordingsRouter);
+app.use('/initial-nodes', initialNodes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -36,7 +41,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 connect();
@@ -50,9 +55,9 @@ function connect () {
     return mongoose.connect(devConfig.db, options).connection;
 }
 
-
 amqp.connect('amqp://rabbitmq', (err, conn) => {
    conn.createChannel((err, ch) => {
+       consumeFromQueue(ch, "nodeInitialStateRecords", handleNodeInitialState);
        consumeFromQueue(ch, "addedNodeRecords", handleAddedNode);
        consumeFromQueue(ch, "removedNodeRecords", handleRemovedNode);
        consumeFromQueue(ch, "mutatedNodeRecords", handleMutatedNode);

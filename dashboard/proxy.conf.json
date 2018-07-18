@@ -1,0 +1,12 @@
+{
+  "/session": {
+    "target": "http://localhost:8082",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/initial-nodes": {
+    "target": "http://localhost:8084",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

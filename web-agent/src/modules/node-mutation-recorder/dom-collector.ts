@@ -1,12 +1,11 @@
-import {recordNodeMutationServiceInstance} from "./services/record-node-mutation.service";
 import {iterateNode} from "../../common/modules/node-iterator/node-iterator";
 import {getUUID, SessionClipNode, setUUID} from "../../common/modules/node-mutator/node-mutator";
+import {recordNodeInitialStateService} from "./services/record-node-initial-state.service";
 
-
-export const startDomCollector = () => {
+export const startDomInitialStateCollector = () => {
     iterateNode(document.documentElement, (node:Node) => {
         setUUID(<SessionClipNode>node);
-        recordNodeMutationServiceInstance.addNode(getUUID(<SessionClipNode>node), node);
+        recordNodeInitialStateService.addNode(getUUID(<SessionClipNode>node), node);
     });
 };
 

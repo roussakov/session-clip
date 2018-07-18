@@ -1,0 +1,10 @@
+
+
+
+<ul>
+  <li *ngFor="let session of (sessionsObservable$ | async)">
+    <a [routerLink]="['/player', session.sessionId]">{{session.sessionId}}</a>
+  </li>
+</ul>
+
+<button routerLink="/player">recordings</button>

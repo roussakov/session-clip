@@ -1,0 +1,27 @@
+#player-controls-container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+mat-toolbar {
+    background-color: #FFF;
+    border-bottom:solid 1px #e8e8e8;
+}
+
+.buttons-container {
+    height: 64px;
+}
+
+.progress-bar-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0 20px 0 20px;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    height:100%;
+    border-right: solid 1px #e8e8e8;
+}

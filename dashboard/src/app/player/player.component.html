@@ -1,0 +1,10 @@
+<app-playback-control
+  [progress]="progress"
+  [completed]="completed"
+  (onPlayingStateChange)="playingStateChangeHandler($event)">
+</app-playback-control>
+
+<app-playback-container
+  #playbackContainer
+  [recordings]="recordings$ | async">
+</app-playback-container>

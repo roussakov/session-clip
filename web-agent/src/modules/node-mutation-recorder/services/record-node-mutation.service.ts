@@ -1,45 +1,22 @@
 import {MutatedNode} from "../models/mutated-node";
-import {AddedNode} from "../models/added-node";
 import {RemovedNode} from "../models/removed-node";
 import {extractAttributes} from "../helpers/extract-attributes.helper";
-import {getUUID, SessionClipNode} from "../../../common/modules/node-mutator/node-mutator";
 import {RecordType} from "../models/record-type";
-import {WebSocket, webSocketInstance} from "../../../core/services/web-socket.service";
+import {createAddedNode} from "../helpers/create-added-node.helper";
+import {RecordingsService, recordingsServiceInstance} from "../../../core/services/recordings.service";
 
 export class RecordNodeMutationService {
 
-    constructor(private socket: WebSocket){}
+    constructor(private recordingsService: RecordingsService){}
 
     addNode(id:number, node:Node) {
-        const {nodeType, nodeName} = node;
-
-        const addedNode:AddedNode = {
-            id,
-            nodeType,
-            nodeName,
-            type:RecordType.addedNode,
-            time: (new Date).toString()
-        };
-
-        if((node instanceof Element)) {
-            addedNode.attributes = extractAttributes(node.attributes)
-        }
-
-        if(node.parentNode) {
-            addedNode.parentId = getUUID(<SessionClipNode>node.parentNode);
-        }
-
-        if(node.previousSibling) {
-            addedNode.prevSiblingId = getUUID(<SessionClipNode>node.previousSibling);
-        }
-
-        this.socket.send("addedNodeRecord", addedNode);
+        this.recordingsService.send("addedNodeRecord", createAddedNode(id, node));
     }
 
     removeNode(id:number) {
         const node:RemovedNode = {id, type:RecordType.removedNode, time: (new Date).toString()};
 
-        this.socket.send("removedNodeRecord", node);
+        this.recordingsService.send("removedNodeRecord", node);
     }
 
     mutateNode(id:number, node:Node) {
@@ -51,8 +28,8 @@ export class RecordNodeMutationService {
             time: (new Date).toString()
         };
 
-        this.socket.send("mutatedNodeRecord", mutatedNode);
+        this.recordingsService.send("mutatedNodeRecord", mutatedNode);
     }
 }
 
-export const recordNodeMutationServiceInstance = new RecordNodeMutationService(webSocketInstance);
+export const recordNodeMutationServiceInstance = new RecordNodeMutationService(recordingsServiceInstance);

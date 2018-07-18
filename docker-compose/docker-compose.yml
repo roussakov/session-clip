@@ -34,7 +34,7 @@ services:
       - mongo
       - rabbitmq
     ports:
-      - "8084:3000"
+        - "8084:3000"
     volumes:
       - ./../recordings-service:/app
 

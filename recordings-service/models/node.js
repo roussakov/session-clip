@@ -9,6 +9,7 @@ const NodeSchema = new Schema({
     attributes: [],
     parentId: Number,
     prevSiblingId: Number,
+    value: String,
     time: Date
 });
 

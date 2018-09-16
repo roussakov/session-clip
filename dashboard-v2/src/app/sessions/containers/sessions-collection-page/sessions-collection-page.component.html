@@ -1,0 +1,2 @@
+<app-session-item *ngFor="let session of (recordedSessions$ | async)"
+                  [id]="session.sessionId" [createdAt]="session.createdAt"></app-session-item>

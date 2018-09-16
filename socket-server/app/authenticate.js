@@ -4,7 +4,10 @@ const amqpConnection = amqp.connect('amqp://rabbitmq');
 
 const authenticate = (socket, data, callback) => {
     const amqpChannel = amqpConnection.then((conn) => conn.createChannel());
-    const createSessionRequest = axios.post('http://session-service:3000/session', {"userId":"123"});
+
+    const payload = Object.assign({}, {"userId":"123"}, data);
+
+    const createSessionRequest = axios.post('http://session-service:3000/api/session', payload);
 
     Promise.all([createSessionRequest, amqpChannel]).then((data) => {
         socket.amqpChannel = data[1];

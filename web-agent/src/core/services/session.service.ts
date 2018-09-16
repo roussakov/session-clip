@@ -10,7 +10,10 @@ export class Session {
     constructor(private socket:any) {}
 
     start():Promise<SessionData> {
-        this.socket.emit(START_SESSION_EVENT);
+        this.socket.emit(START_SESSION_EVENT, {"userInfo": {
+                width: window.innerWidth,
+                height: window.innerHeight,
+            }});
 
         return new Promise<SessionData>((resolve)=> {
             this.socket.on(SESSION_CREATED_EVENT, resolve)

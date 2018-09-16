@@ -25,8 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/recordings', recordingsRouter);
-app.use('/initial-nodes', initialNodes);
+app.use('/api/recordings', recordingsRouter);
+app.use('/api/initial-nodes', initialNodes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

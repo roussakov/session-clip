@@ -13,6 +13,7 @@ router.get('/:sessionId', function (req, res) {
             attributes: node.node.attributes,
             parentId: node.node.parentId,
             prevSiblingId: node.node.prevSiblingId,
+            value: node.node.value,
             time: node.node.time
         })))
         .then(nodes => res.send(nodes));

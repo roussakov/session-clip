@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <div class="button-container">
+    <button mat-button><mat-icon>skip_next</mat-icon></button>
+    <button mat-button (click)="togglePlayer()">
+      <mat-icon *ngIf="!playing && !completed">play_arrow</mat-icon>
+      <mat-icon *ngIf="playing && !completed">pause</mat-icon>
+      <mat-icon *ngIf="completed">replay</mat-icon>
+    </button>
+  </div>
+
+  <div class="progress-bar-container">
+    <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+  </div>
+
+</mat-toolbar>

@@ -8,8 +8,6 @@ export const iterateNode = (rootNode: Node, onNode?: onNodeCallback) => {
         let childNode = node.firstChild;
 
         while (childNode) {
-            onNode && onNode(childNode);
-
             iterate(childNode);
 
             childNode = childNode.nextSibling;

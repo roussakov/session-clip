@@ -18,6 +18,10 @@ export const createAddedNode = (id:number, node:Node):AddedNode => {
         addedNode.attributes = extractAttributes(node.attributes)
     }
 
+    if(node.nodeValue) {
+        addedNode.value = node.nodeValue;
+    }
+
     if(node.parentNode) {
         addedNode.parentId = getUUID(<SessionClipNode>node.parentNode);
     }

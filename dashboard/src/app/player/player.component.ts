@@ -6,6 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {Recordings} from "./store/models/recordings.model";
 import {PlaybackContainerComponent} from "./components/playback-container/playback-container.component";
 import {ActivatedRoute} from "@angular/router";
+import {InitialNode} from "./services/initial-nodes.service";
 
 @Component({
   selector: 'app-player',
@@ -18,6 +19,8 @@ export class PlayerComponent {
   public progress: number = 0;
   public completed: boolean = false;
 
+  public initialNodes:InitialNode[];
+
   @ViewChild('playbackContainer') playbackContainer: PlaybackContainerComponent;
 
   constructor(private store: Store<PlayerState>, private route: ActivatedRoute) {
@@ -25,12 +28,12 @@ export class PlayerComponent {
   }
 
   ngOnInit() {
-    console.log(this.route.snapshot.data);
+    this.initialNodes = (<InitialNode[]>this.route.snapshot.data)
   }
 
   ngAfterViewInit() {
     this.playbackContainer.getPlaybackEngine()
-      .onProgressChanged(progress => this.progress = progress)
+      .onProgressChanged(progress => this.progress = progress);
 
     this.playbackContainer.getPlaybackEngine()
       .onCompleted(()=> this.completed = true)

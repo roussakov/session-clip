@@ -1,0 +1,17 @@
+{
+  "/api/session": {
+    "target": "http://localhost:8082",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/api/recordings": {
+    "target": "http://localhost:8084",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/api/initial-nodes": {
+    "target": "http://localhost:8084",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

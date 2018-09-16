@@ -6,5 +6,6 @@ export interface AddedNode extends Recordable {
     nodeName:string,
     attributes?:any[],
     parentId?:number,
+    value?: string,
     prevSiblingId?:number
 }

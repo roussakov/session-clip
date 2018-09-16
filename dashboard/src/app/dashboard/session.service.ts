@@ -5,7 +5,13 @@ import {Observable} from "rxjs/Observable";
 export interface Session {
   sessionId: string,
   userId: string,
+  userInfo: UserInfo,
   createdAt: Date
+}
+
+export interface UserInfo {
+  width: number,
+  height: number
 }
 
 @Injectable()

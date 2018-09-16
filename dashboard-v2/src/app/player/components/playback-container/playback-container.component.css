@@ -1,0 +1,16 @@
+section {
+  width: 100%;
+  height: calc(100% - 45px);
+  display: block;
+  position: relative;
+  background: #FFF;
+}
+
+#playbackContainer {
+  transform-origin: left top;
+  position: absolute;
+}
+
+iframe {
+  position: absolute;
+}

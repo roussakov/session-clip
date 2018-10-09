@@ -6,6 +6,7 @@ export interface Session {
   sessionId: string,
   userId: string,
   userInfo: any,
+  platform: any,
   createdAt: Date
 }
 

@@ -1,5 +1,5 @@
 export interface Recordable {
     type: string;
-    time: string;
+    time: number;
     sessionId?: string | null;
 }

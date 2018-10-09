@@ -1,3 +1,5 @@
+import browser from 'browser-detect';
+
 const START_SESSION_EVENT = "authentication";
 const SESSION_CREATED_EVENT = "authenticated";
 
@@ -13,7 +15,7 @@ export class Session {
         this.socket.emit(START_SESSION_EVENT, {"userInfo": {
                 width: window.innerWidth,
                 height: window.innerHeight,
-            }});
+            }, "platform": browser()});
 
         return new Promise<SessionData>((resolve)=> {
             this.socket.on(SESSION_CREATED_EVENT, resolve)

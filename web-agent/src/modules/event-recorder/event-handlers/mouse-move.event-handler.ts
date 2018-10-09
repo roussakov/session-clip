@@ -10,7 +10,7 @@ import {BaseEventHandler} from "./base-event-handler";
 export class MouseMoveEventHandler extends BaseEventHandler {
 
     handler(e:MouseEvent):void {
-        const record:MouseMove = {x:e.x, y:e.y, type: EventType.MouseMove, time:(new Date).toString()};
+        const record:MouseMove = {x:e.x, y:e.y, type: EventType.MouseMove, time:(new Date).getTime()};
         this.eventRecorderService.recordMouseMove(record);
     }
 

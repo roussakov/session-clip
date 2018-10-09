@@ -14,7 +14,7 @@ export class RecordNodeMutationService {
     }
 
     removeNode(id:number) {
-        const node:RemovedNode = {id, type:RecordType.removedNode, time: (new Date).toString()};
+        const node:RemovedNode = {id, type:RecordType.removedNode, time: (new Date).getTime()};
 
         this.recordingsService.send("removedNodeRecord", node);
     }
@@ -25,7 +25,7 @@ export class RecordNodeMutationService {
             id,
             attributes: extractAttributes(element.attributes),
             type: RecordType.mutatedNode,
-            time: (new Date).toString()
+            time: (new Date).getTime()
         };
 
         this.recordingsService.send("mutatedNodeRecord", mutatedNode);

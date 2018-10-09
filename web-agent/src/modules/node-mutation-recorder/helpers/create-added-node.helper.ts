@@ -11,7 +11,7 @@ export const createAddedNode = (id:number, node:Node):AddedNode => {
         nodeType,
         nodeName,
         type:RecordType.addedNode,
-        time: (new Date).toString()
+        time: (new Date).getTime()
     };
 
     if((node instanceof Element)) {

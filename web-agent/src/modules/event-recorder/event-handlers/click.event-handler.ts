@@ -10,7 +10,7 @@ import {BaseEventHandler} from "./base-event-handler";
 export class ClickEventHandler extends BaseEventHandler {
 
     handler(e:MouseEvent):void {
-        const record:MouseClick = {x: e.x, y: e.y, type:EventType.Click, time: (new Date()).toString()};
+        const record:MouseClick = {x: e.x, y: e.y, type:EventType.Click, time: (new Date()).getTime()};
 
         this.eventRecorderService.recordMouseClick(record);
     }

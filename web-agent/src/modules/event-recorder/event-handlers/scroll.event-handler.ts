@@ -14,7 +14,7 @@ export class ScrollEventHandler extends BaseEventHandler {
             y: windowRef.pageYOffset,
             x: windowRef.pageXOffset,
             type: EventType.Scroll,
-            time: (new Date).toString()
+            time: (new Date).getTime()
         };
 
         this.eventRecorderService.recordScroll(record);

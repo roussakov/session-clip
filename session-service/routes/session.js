@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
             sessionId: session._id,
             userId: session.userId,
             userInfo: session.userInfo,
-            createdAt: session.createdAt
+            createdAt: session.createdAt,
+            platform: session.platform
         }))
     ).then(sessions => res.send(sessions));
 });
@@ -19,7 +20,8 @@ router.get('/:id', (req, res) => {
                 sessionId: session._id,
                 userId: session.userId,
                 userInfo: session.userInfo,
-                createdAt: session.createdAt
+                createdAt: session.createdAt,
+                platform: session.platform
             })).then(session => res.send(session));
 });
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {AsyncPipe, CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {SessionsRoutingModule} from "./sessions-routing.module";
 import {SessionService} from "./services/session.service";
 import { ViewSessionPageComponent } from './containers/view-session-page/view-session-page.component';
@@ -8,12 +8,14 @@ import { SessionItemComponent } from './components/session-item/session-item.com
 import {RecordingsService} from "./services/recordings.service";
 import {PlayerModule} from "../player/player.module";
 import { DomBuilderPipe } from './pipes/dom-builder.pipe';
+import {MaterialModule} from "../shared/material/material.module";
 
 @NgModule({
   imports: [
     CommonModule,
     SessionsRoutingModule,
-    PlayerModule
+    PlayerModule,
+    MaterialModule
   ],
   declarations: [
     SessionsCollectionPageComponent,
@@ -23,7 +25,8 @@ import { DomBuilderPipe } from './pipes/dom-builder.pipe';
   ],
   providers: [
     SessionService,
-    RecordingsService
+    RecordingsService,
+    DatePipe
   ]
 })
 export class SessionsModule { }

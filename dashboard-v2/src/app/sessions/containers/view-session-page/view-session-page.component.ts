@@ -1,30 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import {InitialNodeRecord, Record, RecordingsService} from "../../services/recordings.service";
-import {Observable} from "rxjs/index";
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import { RecordingsService} from "../../services/recordings.service";
+import {zip} from "rxjs/index";
 import {ActivatedRoute} from "@angular/router";
-import {Session, SessionService} from "../../services/session.service";
+import {SessionService} from "../../services/session.service";
+import {PlayerContainerComponent} from "../../../player/containers/player-container/player-container.component";
 
 @Component({
   selector: 'app-view-session-page',
   templateUrl: './view-session-page.component.html',
   styleUrls: ['./view-session-page.component.css']
 })
-export class ViewSessionPageComponent implements OnInit {
+export class ViewSessionPageComponent implements AfterViewInit {
 
-  public initialNodes$: Observable<InitialNodeRecord[]>;
-  public recordings$: Observable<Record[]>;
-  public session$: Observable<Session>;
+  @ViewChild(PlayerContainerComponent)
+  private playerContainerComponent: PlayerContainerComponent;
 
   constructor(
     private recordingsService: RecordingsService,
     private sessionService: SessionService,
     private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     const sessionId = (<string>this.route.snapshot.params.id);
-    this.session$ = this.sessionService.getSession(sessionId);
-    this.initialNodes$ = this.recordingsService.getInitialNodes(sessionId);
-    this.recordings$ = this.recordingsService.getRecordings(sessionId);
+
+    zip(
+      this.recordingsService.getInitialNodes(sessionId),
+      this.recordingsService.getRecordings(sessionId),
+      this.sessionService.getSession(sessionId)
+    ).subscribe(([DOMState, recordings, sessionMetadata]) => this.playerContainerComponent.setPlayerData(DOMState, recordings, sessionMetadata));
   }
 
 }

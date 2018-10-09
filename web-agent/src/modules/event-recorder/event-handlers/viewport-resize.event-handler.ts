@@ -14,7 +14,7 @@ export class ViewportResizeEventHandler extends BaseEventHandler {
             width: windowRef.innerWidth,
             height: windowRef.innerHeight,
             type: EventType.ViewportResize,
-            time: (new Date).toString()
+            time: (new Date).getTime()
         };
 
         this.eventRecorderService.recordViewPortResize(record);

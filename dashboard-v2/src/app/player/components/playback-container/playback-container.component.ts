@@ -23,7 +23,7 @@ export class PlaybackContainerComponent implements AfterViewInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(){
+  onResize() {
     this.adjustPlaybackViewPortToScreenSize();
   }
 
@@ -51,6 +51,7 @@ export class PlaybackContainerComponent implements AfterViewInit {
     this.iFrameWrapper.nativeElement.style.height = `${this.height}px`;
   }
 
+  //done
   replaceIFrameContents() {
     const document = this.playbackIFrame.nativeElement.contentWindow.window.document;
     document.replaceChild(this.virtualDOM, document.documentElement);

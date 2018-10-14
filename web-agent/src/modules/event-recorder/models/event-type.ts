@@ -2,5 +2,6 @@ export enum EventType {
     MouseMove = "mouseMove",
     ViewportResize = "viewportResize",
     Scroll = "scroll",
-    Click = "click"
+    Click = "click",
+    Input = "input"
 }

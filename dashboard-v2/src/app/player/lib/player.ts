@@ -6,18 +6,15 @@ import {
   PlaybackWindowRef,
   PlayerElement
 } from "../containers/player-container/player-container.component";
+import {calculateScale} from "./utils/calculate-scale";
+import {buildPlaybackSequence} from "./playback-sequence-builder";
 
 export type CurrentTime = number;
-
-function calculateScale(vpWidth, vpHeight, width, height): number {
-  return Math.min(vpWidth / width, vpHeight / height);
-}
 
 export interface PlayerOptions {
   width: number,
   height: number
 }
-
 
 export class Player {
 
@@ -108,12 +105,6 @@ export const createPlayer = (
   return new Player(options, iframeWrapper, playerElement, playbackContainerElement, playbackEngine);
 };
 
-export const buildPlaybackSequence = (playbackMetadata, recordings) => {
 
-  return recordings.map(record => (
-    Object.assign({}, record.data,
-      {offset: (record.data.time - ((new Date(playbackMetadata.createdAt)).getTime())) / 1000}
-    )));
-};
 
 

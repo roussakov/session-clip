@@ -1,23 +1,26 @@
+<div class="sessions-container">
+  <h1>Recorded sessions</h1>
 
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let session of (recordedSessions$ | async)">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Session ID: {{session.sessionId}}
-      </mat-panel-title>
-      <mat-panel-description>
-        Date: {{ session.createdAt | date:'medium' }}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let session of (recordedSessions$ | async)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Session ID: {{session.sessionId}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Date: {{ session.createdAt | date:'medium' }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-    <div>
-    <p class="browser-name">Browser: {{session.platform.name}}</p>
-    <p>Browser version: {{session.platform.version}}</p>
-    <p>Mobile: {{session.platform.mobile ? 'True' : 'False'}}</p>
-    <p>OS: {{session.platform.os}}</p>
+      <div>
+        <p class="browser-name">Browser: {{session.platform.name}}</p>
+        <p>Browser version: {{session.platform.version}}</p>
+        <p>Mobile: {{session.platform.mobile ? 'True' : 'False'}}</p>
+        <p>OS: {{session.platform.os}}</p>
 
-    <a [routerLink]="['/sessions', session.sessionId]">Watch</a>
-    </div>
+        <a [routerLink]="['/sessions', session.sessionId]">Watch</a>
+      </div>
 
-  </mat-expansion-panel>
-</mat-accordion>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

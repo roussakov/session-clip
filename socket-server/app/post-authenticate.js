@@ -9,6 +9,7 @@ const postAuthenticate = (socket, data) => {
     socket.on("scrollRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "scrollRecords", record));
     socket.on("mouseMoveRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "mouseMoveRecords", record));
     socket.on("mouseClickRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "mouseClickRecords", record));
+    socket.on("inputRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "inputRecords", record));
 };
 
 module.exports = postAuthenticate;

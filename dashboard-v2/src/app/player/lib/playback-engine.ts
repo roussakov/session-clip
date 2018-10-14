@@ -8,21 +8,8 @@ import {NodeMutationPlayback} from "./playback-types/node-mutation.playback";
 import {MouseClickPlayback} from "./playback-types/mouse-click.playback";
 import {PlaybackWindowRef} from "../containers/player-container/player-container.component";
 import {EventEmitter} from "@angular/core";
-
-
-export const createCursor = () => {
-  const div = document.createElement("div");
-  div.style.width = "20px";
-  div.style.backgroundImage = "url('/assets/images/player/cursor.svg')";
-  div.style.height = "20px";
-  div.style.left = "0px";
-  div.style.top = "0px";
-  div.style.zIndex = "99999999";
-  div.style.position = "absolute";
-  div.style.backgroundSize = "cover";
-
-  return div;
-};
+import {createMouseCursor} from "./assets/mouse-cursor";
+import {InputPlayback} from "./playback-types/input.playback";
 
 export interface PlaybackViewPortSize {
   width: number;
@@ -32,7 +19,7 @@ export interface PlaybackViewPortSize {
 export class PlaybackEngine {
 
   private timeLine = new TimelineMax({paused: true});
-  private cursorRef = createCursor();
+  private cursorRef = createMouseCursor();
   private _viewPortChanged = new EventEmitter<PlaybackViewPortSize>();
 
   constructor(private windowRef: PlaybackWindowRef, private virtualDom) {
@@ -46,7 +33,8 @@ export class PlaybackEngine {
     const playbackTypesMap = {
       "scroll": new ScrollPlayback(this.timeLine, this.windowRef),
       "mouseMove": new MouseMovePlayback(this.timeLine, this.cursorRef),
-      // "mouseClick": new MouseClickPlayback(this.timeLine),
+      "click": new MouseClickPlayback(this.timeLine, this.virtualDom),
+      "input": new InputPlayback(this.timeLine, this.virtualDom),
       "viewportResize": new ViewportResizePlayback(this.timeLine, this._viewPortChanged),
       "addedNode": new NodeCreationPlayback(this.timeLine, this.virtualDom),
       "removedNode": new NodeDeletionPlayback(this.timeLine, this.virtualDom),

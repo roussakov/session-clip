@@ -40,6 +40,10 @@ class VirtualDomBuilder {
   removeNode(id) {
     this.virtualDOMContainer.getDOM()[id].remove();
   }
+
+  findNode(id) {
+    return this.virtualDOMContainer.getDOM()[id];
+  }
 }
 
 export const buildVirtualDOM = (DOMMetaData) => new VirtualDomBuilder(DOMMetaData);

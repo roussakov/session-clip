@@ -4,7 +4,6 @@ export class MouseMovePlayback {
   }
 
   register(mutation) {
-    console.log(mutation.offset);
     this.timeLine.to(this.mouseCursorRef, 0, {
       top: mutation.y,
       left: mutation.x

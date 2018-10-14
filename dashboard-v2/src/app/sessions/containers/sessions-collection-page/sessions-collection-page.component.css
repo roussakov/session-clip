@@ -1,3 +1,8 @@
 .browser-name {
   text-transform: capitalize;
 }
+
+.sessions-container {
+  width: 70%;
+  margin: 0 auto;
+}

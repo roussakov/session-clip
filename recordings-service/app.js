@@ -19,6 +19,8 @@ const handleMouseMoveEvent = require("./handlers/mouse-move-event.handler");
 const handleScrollEvent = require("./handlers/scroll-event.handler");
 const handleViewPortResizeEvent = require("./handlers/view-port-resize-event.handler");
 const handleNodeInitialState = require("./handlers/node-initial-state.handler");
+const handleInputEvent = require("./handlers/input-event.handler");
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -66,6 +68,7 @@ amqp.connect('amqp://rabbitmq', (err, conn) => {
        consumeFromQueue(ch, "scrollRecords", handleScrollEvent);
        consumeFromQueue(ch, "mouseMoveRecords", handleMouseMoveEvent);
        consumeFromQueue(ch, "viewPortResizeRecords", handleViewPortResizeEvent);
+       consumeFromQueue(ch, "inputRecords", handleInputEvent);
    })
 });
 

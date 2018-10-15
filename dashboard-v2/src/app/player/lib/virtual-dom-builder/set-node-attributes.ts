@@ -1,3 +1,10 @@
 export const setNodeAttributes = (node, attributes) => {
-  attributes.map(attr => node.setAttribute(attr.name, attr.value));
+  attributes.forEach(attr => {
+    try {
+      node.setAttribute(attr.name, attr.value);
+    } catch (e) {
+      //todo: need to abstract logs
+      console.log("Unable to set attribute", e);
+    }
+  });
 };

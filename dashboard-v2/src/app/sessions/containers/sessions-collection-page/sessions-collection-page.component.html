@@ -5,7 +5,7 @@
     <mat-expansion-panel *ngFor="let session of (recordedSessions$ | async)">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Session ID: {{session.sessionId}}
+          Page url: {{session.userInfo.href}}
         </mat-panel-title>
         <mat-panel-description>
           Date: {{ session.createdAt | date:'medium' }}

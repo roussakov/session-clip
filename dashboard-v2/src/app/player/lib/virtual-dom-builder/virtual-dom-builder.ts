@@ -44,6 +44,14 @@ class VirtualDomBuilder {
   findNode(id) {
     return this.virtualDOMContainer.getDOM()[id];
   }
+
+  setBaseUrl(url) {
+    const baseEl = document.createElement("base");
+    baseEl.href = url;
+
+    const vDOMBaseElement = this.getRoot().querySelector("base");
+    vDOMBaseElement ? vDOMBaseElement.replaceWith(baseEl) : this.getRoot().appendChild(baseEl);
+  }
 }
 
 export const buildVirtualDOM = (DOMMetaData) => new VirtualDomBuilder(DOMMetaData);

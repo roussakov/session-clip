@@ -92,7 +92,10 @@ export const createPlayer = (
   iframeWrapper: IFrameWrapper,
   playerElement: PlayerElement,
   playbackContainerElement: PlaybackContainerElement) => {
+
+  //build virtual dom based on DOM snapshot
   const virtualDOM = buildVirtualDOM(DOMState);
+  virtualDOM.setBaseUrl(playbackMetadata.userInfo.origin);
 
   const playbackEngine = new PlaybackEngine(windowRef, virtualDOM);
   playbackEngine.sequence = buildPlaybackSequence(playbackMetadata, recordings);

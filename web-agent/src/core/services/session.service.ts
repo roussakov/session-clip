@@ -15,6 +15,8 @@ export class Session {
         this.socket.emit(START_SESSION_EVENT, {"userInfo": {
                 width: window.innerWidth,
                 height: window.innerHeight,
+                origin: window.location.origin,
+                href: window.location.href
             }, "platform": browser()});
 
         return new Promise<SessionData>((resolve)=> {

@@ -2,10 +2,16 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/index";
 
+export interface UserInfo {
+  width: number,
+  height: number,
+  origin: string
+}
+
 export interface Session {
   sessionId: string,
   userId: string,
-  userInfo: any,
+  userInfo: UserInfo,
   platform: any,
   createdAt: Date
 }

@@ -3,10 +3,10 @@ export class NodeDeletionPlayback {
   constructor(private timeLine, private virtualDom) {
   }
 
-  register(mutation) {
+  register(node) {
     this.timeLine.addCallback(() => {
-      this.virtualDom.removeNode(mutation.id)
-    }, mutation.offset);
+      this.virtualDom.removeNode(node.id)
+    }, node.offset);
   }
 
 }

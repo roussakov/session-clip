@@ -7,7 +7,7 @@ export class MouseClickPlayback {
 
   register(mutation) {
     this.timeLine.addCallback(() => {
-      this.virtualDom.getRoot().appendChild(createMouseClickMarker(mutation.x, mutation.y));
+      this.virtualDom.getRootNode().appendChild(createMouseClickMarker(mutation.x, mutation.y));
     }, mutation.offset);
   }
 

@@ -3,10 +3,10 @@ export class NodeMutationPlayback {
   constructor(private timeLine, private virtualDom) {
   }
 
-  register(mutation) {
+  register(node) {
     this.timeLine.addCallback(() => {
-      this.virtualDom.setAttributes(mutation.id, mutation.attributes);
-    }, mutation.offset);
+      this.virtualDom.setNodeAttributes(node.id, node.attributes);
+    }, node.offset);
   }
 
 }

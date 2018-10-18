@@ -1,14 +1,19 @@
+import {createNodes} from "../virtual-dom/utils";
+
 export class NodeCreationPlayback {
 
-  constructor(private timeLine, private virtualDom) {
+  constructor(private timeLine, private virtualDOM) {
   }
 
-  register(mutation) {
+  register(node) {
     this.timeLine.addCallback(() => {
 
-      this.virtualDom.addNodes(mutation);
+      createNodes(
+        [node],
+        (id, parentId, node) => this.virtualDOM.insertNode(id, parentId, node)
+      );
 
-    }, mutation.offset);
+    }, node.offset);
 
   }
 

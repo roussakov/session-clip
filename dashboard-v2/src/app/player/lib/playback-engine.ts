@@ -23,8 +23,8 @@ export class PlaybackEngine {
   private _viewPortChanged = new EventEmitter<PlaybackViewPortSize>();
 
   constructor(private windowRef: PlaybackWindowRef, private virtualDom) {
-    this.virtualDom.getRoot().appendChild(this.cursorRef);
-    this.windowRef.renderDOM(this.virtualDom.getRoot());
+    this.virtualDom.getRootNode().appendChild(this.cursorRef);
+    this.windowRef.renderDOM(this.virtualDom.getRootNode());
 
     window["timeline"] = this.timeLine;
   }

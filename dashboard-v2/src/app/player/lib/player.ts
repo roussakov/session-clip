@@ -1,6 +1,6 @@
 import {EventEmitter} from "@angular/core";
 import {PlaybackEngine, PlaybackViewPortSize} from "./playback-engine";
-import {buildVirtualDOM} from "./virtual-dom-builder/virtual-dom-builder";
+import {createVirtualDOM} from "./virtual-dom/virtual-dom";
 import {
   IFrameWrapper, PlaybackContainerElement,
   PlaybackWindowRef,
@@ -94,8 +94,7 @@ export const createPlayer = (
   playbackContainerElement: PlaybackContainerElement) => {
 
   //build virtual dom based on DOM snapshot
-  const virtualDOM = buildVirtualDOM(DOMState);
-  virtualDOM.setBaseUrl(playbackMetadata.userInfo.origin);
+  const virtualDOM = createVirtualDOM(DOMState, playbackMetadata.userInfo.origin);
 
   const playbackEngine = new PlaybackEngine(windowRef, virtualDOM);
   playbackEngine.sequence = buildPlaybackSequence(playbackMetadata, recordings);

@@ -7,7 +7,7 @@ import {
   PlayerElement
 } from "../containers/player-container/player-container.component";
 import {calculateScale} from "./utils/calculate-scale";
-import {buildPlaybackSequence} from "./playback-sequence-builder";
+import {createPlaybackSequence} from "./playback-sequence";
 
 export type CurrentTime = number;
 
@@ -97,7 +97,7 @@ export const createPlayer = (
   const virtualDOM = createVirtualDOM(DOMState, playbackMetadata.userInfo.origin);
 
   const playbackEngine = new PlaybackEngine(windowRef, virtualDOM);
-  playbackEngine.sequence = buildPlaybackSequence(playbackMetadata, recordings);
+  playbackEngine.sequence = createPlaybackSequence(playbackMetadata, recordings);
 
   const options = {
     width: playbackMetadata.userInfo.width,

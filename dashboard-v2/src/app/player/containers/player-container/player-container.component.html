@@ -1,5 +1,11 @@
-<app-playback-control-panel (onPlayClick)="playClickHandler()"
-                            (onStopClick)="stopClickHandler()"></app-playback-control-panel>
+<mat-toolbar>
+
+  <app-playback-control-panel (onPlayClick)="playClickHandler()"
+                              (onStopClick)="stopClickHandler()"></app-playback-control-panel>
+  <app-playback-progress-bar [progress]="playerProgress"></app-playback-progress-bar>
+
+</mat-toolbar>
+
 
 <section #playerElement>
   <div #playbackContainerElement id="playbackContainer">

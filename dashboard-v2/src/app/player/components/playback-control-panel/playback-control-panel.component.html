@@ -1,15 +1,12 @@
-<mat-toolbar>
-  <div class="button-container">
-    <button mat-button><mat-icon>skip_next</mat-icon></button>
-    <button mat-button>
-      <mat-icon (click)="playHandler()" *ngIf="!playing">play_arrow</mat-icon>
-      <mat-icon (click)="stopHandler()" *ngIf="playing">pause</mat-icon>
-      <mat-icon *ngIf="completed">replay</mat-icon>
-    </button>
-  </div>
+<div class="button-container">
+  <button mat-button>
+    <mat-icon>skip_next</mat-icon>
+  </button>
+  <button mat-button>
+    <mat-icon (click)="playHandler()" *ngIf="!playing">play_arrow</mat-icon>
+    <mat-icon (click)="stopHandler()" *ngIf="playing">pause</mat-icon>
+    <mat-icon *ngIf="completed">replay</mat-icon>
+  </button>
+</div>
 
-  <div class="progress-bar-container">
-    <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
-  </div>
 
-</mat-toolbar>

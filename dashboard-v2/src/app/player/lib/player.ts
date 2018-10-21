@@ -31,6 +31,8 @@ export class Player {
     this.iframeWrapper.width = options.width;
     this.iframeWrapper.height = options.height;
 
+    this.playbackEngine.onFrameUpdate.subscribe(progress => this._currentTime.emit(progress));
+
     this.playbackEngine.viewPortChanged.subscribe((viewPortSize: PlaybackViewPortSize) => {
 
       this.iframeWrapper.width = viewPortSize.width;

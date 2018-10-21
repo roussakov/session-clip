@@ -1,0 +1,13 @@
+:host {
+  width: 100%;
+}
+
+mat-slider {
+  width: 100%;
+}
+
+
+:host ::ng-deep mat-slider .mat-slider-thumb-container
+{
+  display: none;
+}

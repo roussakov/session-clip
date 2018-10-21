@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, ViewChild} from '@angular/core';
 import {Session} from "../../../sessions/services/session.service";
 import {createPlayer, Player} from "../../lib/player";
 
@@ -83,6 +83,8 @@ export class PlayerContainerComponent {
 
   private player: Player;
 
+  public playerProgress: EventEmitter<number>;
+
   @ViewChild("iFrameWrapper") iFrameWrapper;
   @ViewChild("iFrameRef") iFrameRef;
   @ViewChild("playerElement") playerElement;
@@ -106,6 +108,8 @@ export class PlayerContainerComponent {
       new PlayerElement(this.playerElement.nativeElement),
       new PlaybackContainerElement(this.playbackContainerElement.nativeElement),
     );
+
+    this.playerProgress = this.player.currentTime;
   }
 
 }

@@ -5,6 +5,15 @@
   height: 100%;
 }
 
+:host ::ng-deep mat-toolbar.mat-toolbar-single-row {
+  padding: 0;
+}
+
+:host ::ng-deep mat-toolbar button {
+  height: inherit;
+}
+
+
 app-playback-control-panel {
   height: 45px;
   display: block;

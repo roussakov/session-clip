@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {
+  MatSliderModule,
   MatButtonModule,
   MatToolbarModule,
   MatIconModule,
@@ -14,13 +15,15 @@ import {
     MatIconModule,
     MatProgressBarModule,
     MatExpansionModule,
+    MatSliderModule
   ],
   exports: [
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
     MatProgressBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSliderModule
   ],
   declarations: []
 })

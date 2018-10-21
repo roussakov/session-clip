@@ -18,15 +18,28 @@ export interface PlaybackViewPortSize {
 
 export class PlaybackEngine {
 
-  private timeLine = new TimelineMax({paused: true});
+  readonly timeLine: TimelineMax;
   private cursorRef = createMouseCursor();
   private _viewPortChanged = new EventEmitter<PlaybackViewPortSize>();
+  private _onFrameUpdate: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private windowRef: PlaybackWindowRef, private virtualDom) {
+    this.timeLine = new TimelineMax({paused: true, onUpdate: this.onUpdateHandler.bind(this)});
+
     this.virtualDom.getRootNode().appendChild(this.cursorRef);
     this.windowRef.renderDOM(this.virtualDom.getRootNode());
 
     window["timeline"] = this.timeLine;
+  }
+
+  private onUpdateHandler() {
+    this._onFrameUpdate.emit(
+      this.timeLine.progress()
+    );
+  }
+
+  get onFrameUpdate () {
+    return this._onFrameUpdate;
   }
 
   set sequence(sequence) {

@@ -4,6 +4,7 @@ import {extractAttributes} from "../helpers/extract-attributes.helper";
 import {RecordType} from "../models/record-type";
 import {createAddedNode} from "../helpers/create-added-node.helper";
 import {RecordingsService, recordingsServiceInstance} from "../../../core/services/recordings.service";
+import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/sequence-incrementor.service";
 
 export class RecordNodeMutationService {
 
@@ -14,7 +15,12 @@ export class RecordNodeMutationService {
     }
 
     removeNode(id:number) {
-        const node:RemovedNode = {id, type:RecordType.removedNode, time: (new Date).getTime()};
+        const node:RemovedNode = {
+            id,
+            type:RecordType.removedNode,
+            time: (new Date).getTime(),
+            sequenceNum: getSequenceNumber()
+        };
 
         this.recordingsService.send("removedNodeRecord", node);
     }
@@ -25,7 +31,8 @@ export class RecordNodeMutationService {
             id,
             attributes: extractAttributes(element.attributes),
             type: RecordType.mutatedNode,
-            time: (new Date).getTime()
+            time: (new Date).getTime(),
+            sequenceNum: getSequenceNumber()
         };
 
         this.recordingsService.send("mutatedNodeRecord", mutatedNode);

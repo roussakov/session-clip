@@ -2,6 +2,7 @@ import {RecordType} from "../models/record-type";
 import {getUUID, SessionClipNode} from "../../../common/modules/node-mutator/node-mutator";
 import {AddedNode} from "../models/added-node";
 import {extractAttributes} from "./extract-attributes.helper";
+import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/sequence-incrementor.service";
 
 export const createAddedNode = (id:number, node:Node):AddedNode => {
     const {nodeType, nodeName} = node;
@@ -11,7 +12,8 @@ export const createAddedNode = (id:number, node:Node):AddedNode => {
         nodeType,
         nodeName,
         type:RecordType.addedNode,
-        time: (new Date).getTime()
+        time: (new Date).getTime(),
+        sequenceNum: getSequenceNumber()
     };
 
     if((node instanceof Element)) {

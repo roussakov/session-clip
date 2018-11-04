@@ -2,6 +2,7 @@ import {EventListener} from "../../../common/decorators/event-listener.class-dec
 import {Scroll} from "../models/scroll";
 import {EventType} from "../models/event-type";
 import {BaseEventHandler} from "./base-event-handler";
+import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/sequence-incrementor.service";
 
 @EventListener({
     target: window,
@@ -14,7 +15,8 @@ export class ScrollEventHandler extends BaseEventHandler {
             y: windowRef.pageYOffset,
             x: windowRef.pageXOffset,
             type: EventType.Scroll,
-            time: (new Date).getTime()
+            time: (new Date).getTime(),
+            sequenceNum: getSequenceNumber()
         };
 
         this.eventRecorderService.recordScroll(record);

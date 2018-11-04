@@ -10,7 +10,7 @@ const NodeSchema = new Schema({
     parentId: Number,
     prevSiblingId: Number,
     value: String,
-    time: Date
+    time: Number
 });
 
 const NodeModel = mongoose.model('Node', NodeSchema);

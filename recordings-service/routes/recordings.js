@@ -5,7 +5,7 @@ const Record = require('./../models/record');
 router.get('/:sessionId', function (req, res) {
 
     Record.find({"data.sessionId": req.params.sessionId})
-        .sort({"data.time": 1})
+        .sort({"data.sequenceNum": 1})
         .then(recordings => recordings.map(record => ({
             type: record.type,
             data: record.data

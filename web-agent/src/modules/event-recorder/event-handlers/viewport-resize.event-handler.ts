@@ -2,6 +2,7 @@ import {EventListener} from "../../../common/decorators/event-listener.class-dec
 import {ViewportResize} from "../models/viewport-resize";
 import {EventType} from "../models/event-type";
 import {BaseEventHandler} from "./base-event-handler";
+import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/sequence-incrementor.service";
 
 @EventListener({
     target: window,
@@ -14,7 +15,8 @@ export class ViewportResizeEventHandler extends BaseEventHandler {
             width: windowRef.innerWidth,
             height: windowRef.innerHeight,
             type: EventType.ViewportResize,
-            time: (new Date).getTime()
+            time: (new Date).getTime(),
+            sequenceNum: getSequenceNumber()
         };
 
         this.eventRecorderService.recordViewPortResize(record);

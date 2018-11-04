@@ -4,9 +4,12 @@ import {getUUID, SessionClipNode, setUUID} from "../../../common/modules/node-mu
 
 export class NodeAddedHandler extends NodeMutationHandler {
     handle(addedNode:Node) {
+        //todo: check if iteration required here
         iterateNode(addedNode, (node:Node) => {
-            setUUID(<SessionClipNode>node);
-            this.recordNodeMutationService.addNode(getUUID(<SessionClipNode>node), node);
+            if(!getUUID(<SessionClipNode>node)) {
+                setUUID(<SessionClipNode>node);
+                this.recordNodeMutationService.addNode(getUUID(<SessionClipNode>node), node);
+            }
         });
     }
 }

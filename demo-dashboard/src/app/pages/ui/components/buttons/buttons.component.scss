@@ -1,0 +1,32 @@
+.btn-wrap {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.control-label {
+    display: block;
+    width: 100%;
+}
+
+.division {
+    width: 50%;
+    float: left;
+}
+
+.btn-icon {
+    margin: 0 5px;
+}
+
+.btn-sizes {
+    margin-top: -1px;
+    .btn-lg {
+        margin-top: -3px;
+    }
+    .btn-sm {
+        margin-top: 1px;
+    }
+    .btn-xs {
+        margin-top: 5px;
+    }
+}

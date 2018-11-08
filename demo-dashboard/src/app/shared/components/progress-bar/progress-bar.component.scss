@@ -1,0 +1,75 @@
+@import "../../theme/conf";
+.progress {
+    display: block;
+    padding: 0;
+    margin: 5px 0;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 2px;
+    background: $border-color;
+    .progress-bar {
+        @extend .bg-primary;
+        @include transition(all .4s);
+        border-radius: 2px;
+    }
+    .progress-bar-primary {
+        @extend .bg-primary;
+    }
+    .progress-bar-success {
+        @extend .bg-success;
+    }
+    .progress-bar-warning {
+        @extend .bg-warning;
+    }
+    .progress-bar-danger {
+        @extend .bg-danger;
+    }
+    .progress-bar-info {
+        @extend .bg-info;
+    }
+}
+
+.progress-sm {
+    .progress {
+        height: 4px;
+        .progress-bar {
+            height: 4px;
+        }
+    }
+    .progress-percent {
+        padding: 0 .2em;
+        display: inline-block;
+        position: relative;
+        width: auto;
+        height: auto;
+        background: $fonts-color;
+        border-radius: 2px;
+        font-size: $sm-text;
+        color: $card-bg;
+        @include transition(all .4s);
+        &:after {
+            display: block;
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 45%;
+            width: 4px;
+            height: 4px;
+            background: $fonts-color;
+            transform: rotate(45deg) translate(-50%, 0);
+        }
+    }
+}
+
+.progress-lg {
+    .progress {
+        height: 20px;
+        .progress-bar {
+            height: 20px;
+        }
+    }
+    .progress-percent {
+        font-weight: 700;
+        text-shadow: -1px -1px 1px rgba($black, .4);
+    }
+}

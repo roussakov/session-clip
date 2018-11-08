@@ -1,0 +1,16 @@
+<div class="alerts-wrap" *ngIf="notificationItem.length>0">
+  <div class="{{item.type}} alert-content animated fadeInRight" *ngFor="let item of notificationItem;let i = index">
+    <div class="close-toggle" (click)="closeAlert(i)">
+      <i class="fa fa-close"></i>
+    </div>
+    <label class="alert-title">
+      <span class="fa fa-exclamation alert-ico" *ngIf="item.type==='default'"></span>
+      <span class="fa fa-check-circle alert-ico" *ngIf="item.type==='success'"></span>
+      <span class="fa fa-exclamation-triangle alert-ico" *ngIf="item.type==='warning'"></span>
+      <span class="fa fa-times-circle alert-ico" *ngIf="item.type==='danger'"></span>
+      <span class="fa fa-info-circle alert-ico" *ngIf="item.type==='info'"></span>
+      {{item.title}}
+    </label>
+    <p class="alert-value">{{item.value}}</p>
+  </div>
+</div>

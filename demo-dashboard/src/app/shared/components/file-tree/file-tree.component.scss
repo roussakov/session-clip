@@ -1,0 +1,54 @@
+@import '../../theme/conf';
+li {
+    font-size: $sm-text+1;
+    list-style: none;
+}
+
+.children-list {
+    padding: 0 10px;
+    margin-left: 30px;
+    position: relative;
+    border-left: 1px solid rgba($fonts-color, .3);
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 20px;
+        border-bottom: 1px solid rgba($fonts-color, .3);
+    }
+}
+
+.trees-items {
+    padding: 11px 0 0 0;
+    &:hover {
+        cursor: pointer;
+        .ico {
+            color: lighten($primary, 10%);
+        }
+    }
+}
+
+.file-ico {
+    display: inline-block;
+    width: 60px;
+    text-align: left;
+    .ico {
+        font-size: $default-text;
+        color: $primary;
+        margin: 0;
+    }
+    .fa-file {
+        margin-left: 21px;
+    }
+}
+
+.item-children {
+    overflow: hidden;
+}
+
+.check-label {
+    float: left;
+}

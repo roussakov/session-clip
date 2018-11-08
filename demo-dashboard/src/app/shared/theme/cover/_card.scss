@@ -1,0 +1,15 @@
+.card {
+    width: auto;
+    height: auto;
+    background: $card-bg;
+    position: relative;
+    border: 1px solid $card-border;
+    border-radius: 2px;
+    color: $fonts-color;
+    margin-bottom: 24px; //@include box-shadow(-1px 2px 10px rgba($black, .1));
+}
+
+.card-block {
+    display: block;
+    padding: 10px;
+}

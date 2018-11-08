@@ -1,0 +1,21 @@
+@import '../../../../shared/theme/conf';
+div[class^=col-] {
+    padding: 10px;
+    box-sizing: border-box;
+    div {
+        padding: 10px;
+        text-align: center;
+        background: rgba($black, .2);
+        border-radius: 3px;
+        color: $fonts-color;
+    }
+}
+
+.row {
+    padding: 0 20px;
+}
+
+.grid-title {
+    font-size: 13px;
+    text-indent: 10px;
+}

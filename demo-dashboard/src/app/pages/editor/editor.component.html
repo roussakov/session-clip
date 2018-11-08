@@ -1,0 +1,10 @@
+<card cardTitle="pell editor">
+  <div class="row">
+    <div class="col-md-6">
+      <pell-editor [defaultContent]="defaultContent" (content)="onContentChange($event)"></pell-editor>
+    </div>
+    <div class="col-md-6">
+      <div id="text-output"></div>
+    </div>
+  </div>
+</card>

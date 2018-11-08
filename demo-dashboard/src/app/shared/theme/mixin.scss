@@ -1,0 +1,47 @@
+@mixin box-shadow($shadow...) {
+    box-shadow: $shadow;
+    -o-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+}
+
+@mixin text-shadow($shadow...) {
+    text-shadow: $shadow;
+    -o-text-shadow: $shadow;
+    -moz-text-shadow: $shadow;
+    -webkit-text-shadow: $shadow;
+}
+
+@mixin transform($transform...) {
+    transform: $transform;
+    -o-transform: $transform;
+    -moz-transform: $transform;
+    -webkit-transform: $transform;
+}
+
+@mixin transition($transition...) {
+    transition: $transition;
+    -o-transition: $transition;
+    -moz-transition: $transition;
+    -webkit-transition: $transition;
+}
+
+@mixin linear-gradient($color...) {
+    background: linear-gradient($color);
+    background: -o-linear-gradient($color);
+    background: -moz-linear-gradient($color);
+    background: -webkit-linear-gradient($color);
+}
+
+@mixin border-gradient($color...) {
+    border-image: linear-gradient(to right, $color) 2 3;
+    border-image: -moz-linear-gradient(to right, $color) 3 3;
+    border-image: -webkit-linear-gradient(to right, $color) 3 3;
+}
+
+@mixin center($width, $height) {
+    width: $width;
+    height: $height;
+    text-align: center;
+    line-height: $height;
+}

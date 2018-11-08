@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-md-6">
+    <card cardTitle="basic table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>FIRSTNAME</th>
+            <th>LASTNAME</th>
+            <th>USERNAME</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of default_data;let index = index">
+            <td>{{index}}</td>
+            <td>{{item.first_name}}</td>
+            <td>{{item.last_name}}</td>
+            <td>{{item.user_name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </card>
+  </div>
+  <div class="col-md-6">
+    <card cardTitle="bordered table">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>FIRSTNAME</th>
+            <th>LASTNAME</th>
+            <th>USERNAME</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of default_data;let index = index">
+            <td>{{index}}</td>
+            <td>{{item.first_name}}</td>
+            <td>{{item.last_name}}</td>
+            <td>{{item.user_name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </card>
+  </div>
+  <div class="col-md-6">
+    <card cardTitle="hover table">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>FIRSTNAME</th>
+            <th>LASTNAME</th>
+            <th>USERNAME</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of default_data;let index = index">
+            <td>{{index}}</td>
+            <td>{{item.first_name}}</td>
+            <td>{{item.last_name}}</td>
+            <td>{{item.user_name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </card>
+  </div>
+  <div class="col-md-6">
+    <card cardTitle="striped table">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>FIRSTNAME</th>
+            <th>LASTNAME</th>
+            <th>USERNAME</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of default_data;let index = index">
+            <td>{{index}}</td>
+            <td>{{item.first_name}}</td>
+            <td>{{item.last_name}}</td>
+            <td>{{item.user_name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </card>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+@import '../../../theme/conf';
+.tabs-content {
+    display: none;
+}
+
+.is-content-active {
+    display: block;
+    width: 100%;
+    height: auto;
+    animation: tabContentfadeIn 1.2s both;
+}
+
+@keyframes tabContentfadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

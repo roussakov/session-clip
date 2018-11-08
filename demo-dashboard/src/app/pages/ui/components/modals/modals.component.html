@@ -1,0 +1,82 @@
+<card cardTitle="modal sizes">
+  <button class="btn btn-primary" (click)="openModal(myModal)">open my modal</button>
+  <button class="btn btn-primary" (click)="thirdModal.open()">modal that cannot be simply closed</button>
+  <button class="btn btn-primary" (click)="fifthModal.open()">large modal</button>
+  <button class="btn btn-primary" (click)="sixthModal.open()">small modal</button>
+  <button class="btn btn-primary" (click)="seventhModal.open()">it opens first modal after you close it</button>
+</card>
+
+<modal #myModal>
+  <modal-header>
+    <h3>Modal header</h3>
+  </modal-header>
+  <modal-content>
+    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
+      Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+      Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip
+      quis cardigan american apparel, butcher voluptate nisi qui.</p>
+  </modal-content>
+  <modal-footer>
+    <button class="btn btn-primary" (click)="closeModal(myModal)">close</button>
+  </modal-footer>
+</modal>
+
+<modal #thirdModal [closeOnEscape]="false" [closeOnOutsideClick]="false">
+  <modal-header>
+    <h3>modal that cannot be simply closed</h3>
+  </modal-header>
+  <modal-content>
+    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
+      Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+      Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis
+      cardigan american apparel, butcher voluptate nisi qui.</p>
+  </modal-content>
+  <modal-footer>
+    <button class="btn btn-primary" (click)="closeModal(thirdModal)">close</button>
+  </modal-footer>
+</modal>
+
+<modal #fifthModal modalClass="modal-lg">
+  <modal-header>
+    <h3>large modal</h3>
+  </modal-header>
+  <modal-content>
+    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
+      Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+      Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis
+      cardigan american apparel, butcher voluptate nisi qui.</p>
+  </modal-content>
+  <modal-footer>
+    <button class="btn btn-primary" (click)="closeModal(fifthModal)">close</button>
+  </modal-footer>
+</modal>
+
+<modal #sixthModal modalClass="modal-sm">
+  <modal-header>
+    <h3>small modal</h3>
+  </modal-header>
+  <modal-content>
+    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
+      Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+      Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis
+      cardigan american apparel, butcher voluptate nisi qui.</p>
+  </modal-content>
+  <modal-footer>
+    <button class="btn btn-primary" (click)="closeModal(sixthModal)">close</button>
+  </modal-footer>
+</modal>
+
+<modal #seventhModal (onClose)="onClose()">
+  <modal-header>
+    <h3>it opens first modal after you close it</h3>
+  </modal-header>
+  <modal-content>
+    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
+      Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+      Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis
+      cardigan american apparel, butcher voluptate nisi qui.</p>
+  </modal-content>
+  <modal-footer>
+    <button class="btn btn-primary" (click)="closeModal(seventhModal)">close</button>
+  </modal-footer>
+</modal>

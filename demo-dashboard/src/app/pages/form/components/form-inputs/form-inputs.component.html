@@ -1,0 +1,168 @@
+<div class="row">
+  <div class="col-md-6">
+
+    <!-- form-group form-control control-label ↓↓↓↓↓↓↓↓↓ -->
+    <card cardTitle="Input Types" isCollapse="true">
+      <div class="form-group">
+        <label class="control-label">Text</label>
+        <input type="text" class="form-control" placeholder="Text Input">
+        <label class="control-label">Password</label>
+        <input type="password" class="form-control" placeholder="Password Input">
+        <label class="control-label">With Help</label>
+        <input type="text" class="form-control" placeholder="With Help">
+        <span class="help-block sub-little-text">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+        <label class="control-label">Small Input</label>
+        <input type="text" class="form-control form-control-sm" placeholder="Small Input">
+        <label class="control-label">Large Input</label>
+        <input type="text" class="form-control form-control-lg" placeholder="Large Input">
+        <label class="control-label">Disabled</label>
+        <input type="text" class="form-control" placeholder="Disabled Input" disabled>
+        <label class="control-label">Readonly</label>
+        <input type="text" class="form-control" placeholder="Readonly Input" readonly>
+        <label class="control-label">Textarea</label>
+        <textarea cols="0" rows="10" class="form-control" placeholder="Textarea"></textarea>
+      </div>
+    </card>
+    <card cardTitle="Input Group">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">Action</a>
+              </li>
+              <li>
+                <a href="#">Another action</a>
+              </li>
+            </ul>
+          </div>
+          <input class="form-control form-control-sm with-success-addon" placeholder="With button group" type="text">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">@</span>
+          <input class="form-control with-primary-addon" placeholder="Username" type="text">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control with-success-addon" placeholder="Mail" type="text">
+          <span class="input-group-addon input-group-addon-success addon-right" id="basic-addon1">@mail.com</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-warning addon-left" id="basic-addon1">www.</span>
+          <input class="form-control with-warning-addon" placeholder="Sitename" type="text">
+          <span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon1">.com</span>
+        </div>
+      </div>
+    </card>
+  </div>
+
+  <!-- input-group with-addon with-btn&btn-group ↓↓↓↓↓↓↓ -->
+  <div class="col-md-6">
+    <card cardTitle="Checkbox&Radio">
+      <div class="form-group">
+        <div class="col-md-4">
+          <input class="checkbox" type="checkbox" id="default-checkbox1" checked>
+          <label class="check-label" for="default-checkbox1">Checkbox1</label>
+        </div>
+        <div class="col-md-4">
+          <input class="checkbox" type="checkbox" id="default-checkbox2">
+          <label class="check-label" for="default-checkbox2">Checkbox2</label>
+        </div>
+        <div class="col-md-4">
+          <input class="checkbox" type="checkbox" id="default-checkbox3">
+          <label class="check-label" for="default-checkbox3">Checkbox3</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-4">
+          <input class="radio" type="radio" id="default-radio1" name="radio" checked>
+          <label class="radio-label" for="default-radio1">Radio1</label>
+        </div>
+        <div class="col-md-4">
+          <input class="radio" type="radio" id="default-radio2" name="radio">
+          <label class="radio-label" for="default-radio2">Radio2</label>
+        </div>
+        <div class="col-md-4">
+          <input class="radio" type="radio" id="default-radio3" name="radio">
+          <label class="radio-label" for="default-radio3">Radio3</label>
+        </div>
+      </div>
+    </card>
+    <card cardTitle="Color&State">
+      <div class="form-group">
+        <div class="col-md-12">
+          <input class="checkbox" type="checkbox" id="color-checkbox1" checked>
+          <label class="check-label" for="color-checkbox1">Default</label>
+        </div>
+        <div class="col-md-12">
+          <input class="checkbox checkbox-primary" type="checkbox" id="color-checkbox2" checked>
+          <label class="check-label" for="color-checkbox2">Primary</label>
+        </div>
+        <div class="col-md-12">
+          <input class="checkbox checkbox-success" type="checkbox" id="color-checkbox3" checked>
+          <label class="check-label" for="color-checkbox3">Success</label>
+        </div>
+        <div class="col-md-12">
+          <input class="checkbox checkbox-warning" type="checkbox" id="color-checkbox4" checked>
+          <label class="check-label" for="color-checkbox4">Warning</label>
+        </div>
+        <div class="col-md-12">
+          <input class="checkbox checkbox-danger" type="checkbox" id="color-checkbox5" checked>
+          <label class="check-label" for="color-checkbox5">Danger</label>
+        </div>
+        <div class="col-md-12">
+          <input class="checkbox checkbox-info" type="checkbox" id="color-checkbox6" checked>
+          <label class="check-label" for="color-checkbox6">Info</label>
+        </div>
+      </div>
+    </card>
+    <card cardTitle="Switch">
+      <div class="switch-group">
+        <label class="control-label">Multiple Switch</label>
+        <switch switchName="multiple" switchId="multiple1" multiple [checked]="true"></switch>
+        <switch switchName="multiple" switchId="multiple2" theme="success" multiple [checked]="true"></switch>
+        <switch switchName="multiple" switchId="multiple3" theme="warning" multiple [checked]="true"></switch>
+        <switch switchName="multiple" switchId="multiple4" theme="danger" multiple [checked]="true"></switch>
+        <switch switchName="multiple" switchId="multiple5" theme="info" multiple [checked]="true"></switch>
+      </div>
+      <div class="switch-group">
+        <label class="control-label">Single Switch</label>
+        <switch switchName="single" switchId="single1" [checked]="true"></switch>
+        <switch switchName="single" switchId="single2" theme="success"></switch>
+        <switch switchName="single" switchId="single3" theme="warning"></switch>
+        <switch switchName="single" switchId="single4" theme="danger"></switch>
+        <switch switchName="single" switchId="single5" theme="info"></switch>
+      </div>
+    </card>
+    <card cardTitle="Select&Multiple Select">
+      <div class="form-group">
+        <label class="control-label">Select</label>
+        <select name="select" id="select1" class="form-control">
+          <option value="option1">option1</option>
+          <option value="option2">option2</option>
+          <option value="option3">option3</option>
+          <option value="option4">option4</option>
+        </select>
+        <label class="control-label">Multiple Select</label>
+        <select multiple name="select" id="select1" class="form-control">
+          <option value="option1">option1</option>
+          <option value="option2">option2</option>
+          <option value="option3">option3</option>
+          <option value="option4">option4</option>
+          <option value="option5">option4</option>
+          <option value="option6">option4</option>
+          <option value="option7">option4</option>
+        </select>
+      </div>
+    </card>
+  </div>
+</div>

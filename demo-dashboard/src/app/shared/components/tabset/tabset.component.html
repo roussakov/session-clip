@@ -1,0 +1,9 @@
+<div [class]="theme">
+  <div class="tabs-header">
+    <button class="tabs-nav" *ngFor="let item of tabsMenuItem;let i = index" [ngClass]="{'active':item.active,'tabs-nav':!item.active}"
+      [disabled]="item.disabled" (click)="isActive(i)">{{item.text}}</button>
+  </div>
+  <div class="tabs-body">
+    <ng-content></ng-content>
+  </div>
+</div>

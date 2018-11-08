@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-12">
+    <card cardTitle="notications">
+      <button class="btn btn-primary" (click)="notification('default')">Default Notification</button>
+      <button class="btn btn-success" (click)="notification('success')">Success Notification</button>
+      <button class="btn btn-warning" (click)="notification('warning')">Warning Notification</button>
+      <button class="btn btn-danger" (click)="notification('danger')">Danger Notification</button>
+      <button class="btn btn-info" (click)="notification('info')">Info Notification</button>
+    </card>
+  </div>
+  <div class="col-md-8">
+    <card cardTitle="Bootstrap Alert">
+      <alert type="success">Well done! You successfully read this important alert message.</alert>
+      <alert type="info">Heads up! This alert needs your attention, but it's not super important.</alert>
+      <alert type="warning">Warning! Better check yourself, you're not looking too good.</alert>
+      <alert type="danger">Oh snap! Change a few things up and try submitting again.</alert>
+    </card>
+    <card cardTitle="With Close Button">
+      <alert type="warning" isCloseAlert="true">Warning! Better check yourself, you're not looking too good.</alert>
+      <alert type="danger" isCloseAlert="true">Oh snap! Change a few things up and try submitting again.</alert>
+    </card>
+  </div>
+  <div class="col-md-4">
+    <card cardTitle="SweetAlert2">
+      <label class="control-label">A title with a text under.</label>
+      <button class="btn btn-primary" (click)="alert2Basic()">Try Me</button>
+
+      <label class="control-label">A modal with a title, an error icon, a text.</label>
+      <button class="btn btn-primary" (click)="alert2Error()">Try Me</button>
+
+      <label class="control-label">A warning message, with a function attached to the "Confirm"-button...</label>
+      <button class="btn btn-primary" (click)="alertConfirm()">Try Me</button>
+
+      <label class="control-label">A message with auto close timer</label>
+      <button class="btn btn-primary" (click)="alertTimer()">Try Me</button>
+
+      <label class="control-label">Ajax request example</label>
+      <button class="btn btn-primary" (click)="alertRequest()">Try Me</button>
+
+      <label class="control-label">A message with a custom image and CSS animation disabled</label>
+      <button class="btn btn-primary" (click)="alertImg()">Try Me</button>
+
+      <a href="https://sweetalert2.github.io/" target="_blank" class="btn btn-link">More About SweetAlert2→</a>
+    </card>
+  </div>
+</div>

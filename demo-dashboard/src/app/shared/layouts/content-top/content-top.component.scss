@@ -1,0 +1,30 @@
+@import "../../theme/conf";
+.content-wrap {
+    width: 100%;
+    height: auto;
+}
+
+a,
+span {
+    display: inline-block;
+    text-transform: uppercase;
+    color: rgba($fonts-color, .7);
+    font-size: $sm-text+1;
+    margin-bottom: 20px;
+}
+
+a:hover {
+    color: $primary;
+    text-decoration: none;
+}
+
+i {
+    font-size: $default-text;
+    color: rgba($fonts-color, .5);
+    font-weight: 700;
+    margin: 0 3px;
+}
+
+span {
+    color: $fonts-color;
+}

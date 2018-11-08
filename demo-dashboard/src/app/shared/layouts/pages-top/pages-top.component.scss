@@ -1,0 +1,181 @@
+@import '../../theme/conf';
+.pages-top {
+    position: relative;
+    width: 100%;
+    height: 81px;
+    background: $sidebar-bg;
+    border: none;
+}
+
+.avatar-wrap {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
+    padding: 15px 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    width: 240px;
+    height: auto;
+    min-height: 50px;
+    @include transition(all .4s);
+    .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        overflow: hidden;
+        @include transition(all .4s);
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+    .user-info-wrap {
+        padding: 2px 14px;
+        width: 170px;
+        height: auto;
+        @include transition(all .4s);
+    }
+    .user-name,
+    .user-post {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+    }
+    .user-name {
+        color: $sidebar-fonts-color;
+        font-size: $lg-text;
+    }
+    .user-post {
+        color: $primary;
+        font-size: $sm-text;
+        margin-top: 5px;
+    }
+}
+
+.collapse-menu {
+    position: absolute;
+    top: 50%;
+    left: 250px;
+    transform: translate(0, -50%);
+    color: $sidebar-fonts-color;
+    font-size: 24px;
+    cursor: pointer;
+    @include center(40px, 40px);
+    @include transition(all .2s);
+    &:hover {
+        color: $primary;
+    }
+    .toggle-on {
+        transform: rotate(0);
+        @include transition(all .5s);
+    }
+    .toggle-off {
+        transform: rotate(-270deg);
+        @include transition(all .5s);
+    }
+}
+
+.search-group {
+    position: absolute;
+    top: 50%;
+    right: 170px;
+    transform: translate(0, -50%);
+    width: 340px;
+    background: $border-color;
+    border: 1px solid $border-color;
+    border-radius: 2px;
+    overflow: hidden;
+    .search-input {
+        width: 300px;
+        height: 40px;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: $sidebar-fonts-color;
+        font-size: $sm-text;
+        text-indent: 1.5em;
+    }
+    .search-btn {
+        position: relative;
+        top: -1px;
+        right: 1px;
+        width: 30px;
+        height: 30px;
+        background: $primary;
+        border: 0;
+        border-radius: 50%;
+        outline: none;
+        line-height: 30px;
+        text-align: center;
+        color: $body-bg;
+        transform: scale(0);
+        transition: all .4s;
+        &:hover {
+            background: lighten($primary, 10%);
+            transform: scale(1);
+        }
+    }
+    .search-input:focus+.search-btn {
+        transform: scale(1);
+    }
+}
+
+.msg-tips-wrap {
+    display: flex;
+    flex-wrap: nowrap;
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    transform: translate(0, -50%);
+    width: 100px;
+    height: 40px;
+    color: $sidebar-fonts-color;
+    @include transition(all .4s);
+}
+
+.msg-entrance {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    @include transition(all .4s);
+    color: $sidebar-fonts-color;
+    &:hover {
+        cursor: pointer;
+        color: $primary;
+    }
+    span.badge {
+        padding: 0;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: block;
+        width: 11px;
+        height: 11px;
+        background: $primary;
+        border: 2px solid $sidebar-bg;
+        border-radius: 50%;
+    }
+}
+
+@media (max-width:414px) {
+    .avatar-wrap {
+        width: auto;
+        .avatar {
+            border-radius: 50px;
+        }
+        .user-info-wrap {
+            display: none;
+        }
+    }
+    .collapse-menu {
+        left: 100px;
+    }
+    .search-group {
+        display: none;
+    }
+}

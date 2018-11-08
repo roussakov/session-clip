@@ -1,0 +1,61 @@
+@import '../../theme/conf';
+.alerts-wrap {
+    padding: 20px 40px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    z-index: 100;
+}
+
+.alert-content {
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    .close-toggle {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: $white;
+        cursor: pointer;
+        @include center(20px, 20px);
+    }
+    .alert-title {
+        color: $white;
+        font-size: $lg-text;
+        width: 85%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .alert-ico {
+        margin-right: 10px;
+    }
+    .alert-value {
+        color: rgba($white, .8);
+        font-size: $sm-text;
+    }
+}
+
+.default {
+    @extend .bg-primary;
+}
+
+.success {
+    @extend .bg-success;
+}
+
+.warning {
+    @extend .bg-warning;
+}
+
+.danger {
+    @extend .bg-danger;
+}
+
+.info {
+    @extend .bg-info;
+}

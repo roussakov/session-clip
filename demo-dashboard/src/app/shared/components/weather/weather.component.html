@@ -1,0 +1,16 @@
+<div class="weather-wrap">
+  <div class="weather-content">
+    <i class="icon iconfont icon-{{today.type}} type"></i>
+    <span class="low-high">{{today.low}} ~ {{today.high}}</span>
+    <span class="wind">
+      <i class="icon iconfont icon-tianqizitiku09"></i>
+      {{today.fl}}</span>
+  </div>
+  <div class="weather-bottom">
+    <button class="switch-btn forecast-item-wrap" [ngClass]="{'active':item.isSelect}" *ngFor="let item of data;let i = index"
+      (click)="switch(i)">
+      <i class="icon iconfont icon-{{item.type}}"></i>
+      <span>{{item.date}}</span>
+    </button>
+  </div>
+</div>

@@ -32,7 +32,7 @@ export class PlaybackWindowRef {
   }
 
   renderDOM(dom) {
-    this.nativeBrowserWindow.document.replaceChild(dom, this.nativeBrowserWindow.document.firstChild);
+    this.nativeBrowserWindow.document.replaceChild(dom, this.nativeBrowserWindow.document.children[0]);
   }
 
   get nativeBrowserWindow() {

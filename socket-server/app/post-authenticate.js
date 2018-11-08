@@ -6,10 +6,12 @@ const postAuthenticate = (socket, data) => {
     socket.on("removedNodeRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "removedNodeRecords", record));
     socket.on("mutatedNodeRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "mutatedNodeRecords", record));
     socket.on("viewPortResizeRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "viewPortResizeRecords", record));
-    socket.on("scrollRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "scrollRecords", record));
+    socket.on("innerScrollRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "innerScrollRecords", record));
+    socket.on("windowScrollRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "windowScrollRecords", record));
     socket.on("mouseMoveRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "mouseMoveRecords", record));
     socket.on("mouseClickRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "mouseClickRecords", record));
     socket.on("inputRecord", (record) => sendPayloadToQueue(socket.amqpChannel, "inputRecords", record));
+
 };
 
 module.exports = postAuthenticate;

@@ -5,7 +5,7 @@ import {BaseEventHandler} from "./base-event-handler";
 import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/sequence-incrementor.service";
 
 @EventListener({
-    target: window,
+    targetEl: window,
     eventName: "mousemove"
 })
 export class MouseMoveEventHandler extends BaseEventHandler {

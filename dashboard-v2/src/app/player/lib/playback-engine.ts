@@ -1,5 +1,5 @@
 import {TimelineMax} from "gsap";
-import {ScrollPlayback} from "./playback-types/scroll.playback";
+import {WindowScrollPlayback} from "./playback-types/window-scroll.playback";
 import {MouseMovePlayback} from "./playback-types/mouse-move.playback";
 import {ViewportResizePlayback} from "./playback-types/viewport-resize.playback";
 import {NodeCreationPlayback} from "./playback-types/node-creation.playback";
@@ -10,6 +10,7 @@ import {PlaybackWindowRef} from "../containers/player-container/player-container
 import {EventEmitter} from "@angular/core";
 import {createMouseCursor} from "./assets/mouse-cursor";
 import {InputPlayback} from "./playback-types/input.playback";
+import {InnerScrollPlayback} from "./playback-types/inner-scroll.playback";
 
 export interface PlaybackViewPortSize {
   width: number;
@@ -38,13 +39,14 @@ export class PlaybackEngine {
     );
   }
 
-  get onFrameUpdate () {
+  get onFrameUpdate() {
     return this._onFrameUpdate;
   }
 
   set sequence(sequence) {
     const playbackTypesMap = {
-      "scroll": new ScrollPlayback(this.timeLine, this.windowRef),
+      "innerScroll": new InnerScrollPlayback(this.timeLine, this.windowRef, this.virtualDom),
+      "windowScroll": new WindowScrollPlayback(this.timeLine, this.windowRef),
       "mouseMove": new MouseMovePlayback(this.timeLine, this.cursorRef),
       "click": new MouseClickPlayback(this.timeLine, this.virtualDom),
       "input": new InputPlayback(this.timeLine, this.virtualDom),

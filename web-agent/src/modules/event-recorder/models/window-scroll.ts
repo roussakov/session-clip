@@ -1,6 +1,6 @@
 import {Recordable} from "../../../common/modules/recordable";
 
-export interface Scroll extends Recordable {
+export interface WindowScroll extends Recordable {
     x:number,
     y:number
 }

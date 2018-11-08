@@ -1,7 +1,6 @@
 import {PlaybackWindowRef} from "../../containers/player-container/player-container.component";
 
-
-export class ScrollPlayback {
+export class WindowScrollPlayback {
 
   constructor(private timeLine, private windowRef: PlaybackWindowRef) {
   }

@@ -7,6 +7,10 @@ import {InputEventHandler} from "./event-handlers/input.event-handler";
 import {InnerScrollEventHandler} from "./event-handlers/inner-scroll.event-handler";
 
 export const startEventCollector = () => {
-    [ClickEventHandler, MouseMoveEventHandler, InnerScrollEventHandler, WindowScrollEventHandler, ViewportResizeEventHandler, InputEventHandler]
-        .forEach(eventHandler => new eventHandler(eventRecorderServiceInstance));
+    const events = [ClickEventHandler, MouseMoveEventHandler, InnerScrollEventHandler, WindowScrollEventHandler, ViewportResizeEventHandler, InputEventHandler]
+        .map(eventHandler => new eventHandler(eventRecorderServiceInstance));
+
+    return {
+        stop: () => events.forEach((event: any) => event.unsubscribe())
+    }
 };

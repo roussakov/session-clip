@@ -11,7 +11,9 @@ export function EventListener(options: EventListenerParameters):any {
         return (...args:any[]): any => {
             const instance = new target(...args);
 
-            targetEl.addEventListener(eventName, (e:Event) => instance.handler(e, window), capture);
+            const eventHandler = (e: Event) => instance.handler(e, window);
+            targetEl.addEventListener(eventName, eventHandler, capture);
+            instance.unsubscribe = () => targetEl.removeEventListener(eventName, eventHandler, capture);
 
             return instance;
         }

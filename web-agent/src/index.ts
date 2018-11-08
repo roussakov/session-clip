@@ -6,6 +6,13 @@ import {startSession} from "./core/start-session";
 startSession().then(() => {
     //run recorder algorithm
     startDomInitialStateCollector();
-    startDomObserver();
-    startEventCollector();
+
+    const backgroundProcesses = [
+        startDomObserver(),
+        startEventCollector()
+    ];
+
+    setTimeout(() => {
+        backgroundProcesses.forEach(process => process.stop());
+    }, 15000);
 });

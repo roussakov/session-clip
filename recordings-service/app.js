@@ -58,7 +58,6 @@ function connect () {
     return mongoose.connect(devConfig.db, options).connection;
 }
 
-
 amqp.connect('amqp://rabbitmq', (err, conn) => {
    conn.createChannel((err, ch) => {
        consumeFromQueue(ch, "nodeInitialStateRecords", handleNodeInitialState);

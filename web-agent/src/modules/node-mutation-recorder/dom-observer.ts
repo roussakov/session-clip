@@ -8,9 +8,13 @@ export const startDomObserver = () => {
     const handlers = [NodeAddedHandler, NodeRemovedHandler, NodeAttributesChangedHandler]
         .map(handler => new handler(recordNodeMutationServiceInstance));
 
-    observe(document.documentElement, {
+    const observer = observe(document.documentElement, {
         nodeAddedHandler: handlers[0],
         nodeRemovedHandler: handlers[1],
         nodeAttributesChangedHandler: handlers[2]
     });
+
+    return {
+        stop: () => observer.disconnect()
+    }
 };

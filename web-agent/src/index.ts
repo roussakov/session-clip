@@ -1,18 +1,22 @@
-import {startDomInitialStateCollector} from "./modules/node-mutation-recorder/dom-collector";
-import {startDomObserver} from "./modules/node-mutation-recorder/dom-observer";
-import {startEventCollector} from "./modules/event-recorder/event-collector";
-import {startSession} from "./core/start-session";
+import {SessionClipApplication, startApplication} from "./starter";
 
-startSession().then(() => {
-    //run recorder algorithm
-    startDomInitialStateCollector();
+const sessionClipPublicApi = () => {
 
-    const backgroundProcesses = [
-        startDomObserver(),
-        startEventCollector()
-    ];
+    let application: Promise<SessionClipApplication>;
 
-    setTimeout(() => {
-        backgroundProcesses.forEach(process => process.stop());
-    }, 15000);
-});
+    return {
+        start: (): void => {
+            application = startApplication()
+        },
+        stop: (): void => {
+            application.then(app => app.stop())
+        }
+    }
+};
+
+/**
+ * Don't allow sessionclip instances multiplicity
+ */
+if (!window["sessionClip"]) {
+    window["sessionClip"] = sessionClipPublicApi();
+}

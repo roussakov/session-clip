@@ -1,8 +1,8 @@
 import {EventListener} from "../../../common/decorators/event-listener.class-decorator";
 import {BaseEventHandler} from "./base-event-handler";
-import {Input} from "../models/input";
-import {EventType} from "../models/event-type";
+import {InputData} from "../models/input.data";
 import {getUUID} from "../../../common/modules/node-mutator/node-mutator";
+import {createRecord} from "../../../common/modules/recordable";
 
 @EventListener({
     targetEl: window,
@@ -10,15 +10,13 @@ import {getUUID} from "../../../common/modules/node-mutator/node-mutator";
 })
 export class InputEventHandler extends BaseEventHandler {
 
-    handler(e:Event, windowRef:Window):void {
-        const record:Input = {
-            type: EventType.Input,
+    handler(e: Event): void {
+        const inputData: InputData = {
             id: getUUID(e.target),
             value: e.target.value,
-            time: (new Date).getTime()
         };
 
-        this.eventRecorderService.recordInput(record);
+        this.eventRecorderService.recordInput(createRecord("input", inputData));
     }
 
 }

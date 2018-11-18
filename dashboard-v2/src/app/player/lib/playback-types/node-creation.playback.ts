@@ -9,7 +9,7 @@ export class NodeCreationPlayback {
     this.timeLine.addCallback(() => {
 
       createNodes(
-        [node],
+        [node.data],
         (id, parentId, node) => this.virtualDOM.insertNode(id, parentId, node)
       );
 

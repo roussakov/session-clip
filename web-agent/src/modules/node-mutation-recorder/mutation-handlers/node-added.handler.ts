@@ -8,7 +8,7 @@ export class NodeAddedHandler extends NodeMutationHandler {
         iterateNode(addedNode, (node:Node) => {
             if(!getUUID(<SessionClipNode>node)) {
                 setUUID(<SessionClipNode>node);
-                this.recordNodeMutationService.addNode(getUUID(<SessionClipNode>node), node);
+                this.nodeMutationRecorderService.addNode(getUUID(<SessionClipNode>node), node);
             }
         });
     }

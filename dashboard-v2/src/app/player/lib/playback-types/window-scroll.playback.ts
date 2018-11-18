@@ -7,7 +7,7 @@ export class WindowScrollPlayback {
 
   register(mutation) {
     this.timeLine.addCallback(() => {
-      this.windowRef.nativeBrowserWindow.scrollTo(mutation.x, mutation.y)
+      this.windowRef.nativeBrowserWindow.scrollTo(mutation.data.x, mutation.data.y)
     }, mutation.offset);
   }
 

@@ -1,8 +1,7 @@
 import {EventListener} from "../../../common/decorators/event-listener.class-decorator";
-import {MouseClick} from "../models/mouse-click";
-import {EventType} from "../models/event-type";
+import {MouseClickData} from "../models/mouse-click.data";
 import {BaseEventHandler} from "./base-event-handler";
-import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/sequence-incrementor.service";
+import {createRecord} from "../../../common/modules/recordable";
 
 @EventListener({
     targetEl: window,
@@ -10,16 +9,13 @@ import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/se
 })
 export class ClickEventHandler extends BaseEventHandler {
 
-    handler(e:MouseEvent):void {
-        const record:MouseClick = {
+    handler(e: MouseEvent): void {
+        const mouseClickData: MouseClickData = {
             x: e.pageX,
             y: e.pageY,
-            type:EventType.Click,
-            time: (new Date).getTime(),
-            sequenceNum: getSequenceNumber()
         };
 
-        this.eventRecorderService.recordMouseClick(record);
+        this.eventRecorderService.recordMouseClick(createRecord("click", mouseClickData));
     }
 
 }

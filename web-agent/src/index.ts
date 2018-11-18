@@ -1,6 +1,12 @@
 import {SessionClipApplication, startApplication} from "./starter";
+import {exposeOnWindow} from "./core/utils/expose-on-window";
 
-const sessionClipPublicApi = () => {
+export interface SessionClipPublicApi {
+    start(): void;
+    stop(): void;
+}
+
+const sessionClipPublicApi = (): SessionClipPublicApi => {
 
     let application: Promise<SessionClipApplication>;
 
@@ -14,9 +20,4 @@ const sessionClipPublicApi = () => {
     }
 };
 
-/**
- * Don't allow sessionclip instances multiplicity
- */
-if (!window["sessionClip"]) {
-    window["sessionClip"] = sessionClipPublicApi();
-}
+exposeOnWindow(window, sessionClipPublicApi());

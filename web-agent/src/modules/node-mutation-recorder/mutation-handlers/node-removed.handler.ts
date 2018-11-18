@@ -3,6 +3,6 @@ import {getUUID, SessionClipNode} from "../../../common/modules/node-mutator/nod
 
 export class NodeRemovedHandler extends NodeMutationHandler {
     handle(removedNode:Node) {
-        this.recordNodeMutationService.removeNode(getUUID(<SessionClipNode>removedNode));
+        this.nodeMutationRecorderService.removeNode(getUUID(<SessionClipNode>removedNode));
     }
 }

@@ -12,6 +12,7 @@ export class Session {
     constructor(private socket:any) {}
 
     start():Promise<SessionData> {
+        //todo: add types to session data object
         this.socket.emit(START_SESSION_EVENT, {"userInfo": {
                 width: window.innerWidth,
                 height: window.innerHeight,

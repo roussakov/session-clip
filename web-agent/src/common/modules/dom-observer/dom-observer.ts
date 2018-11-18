@@ -1,5 +1,7 @@
 import {MutationHandlers} from "./mutation-handlers";
 
+const toArray = (nodeList: NodeList) => [].slice.call(nodeList);
+
 export const observe = (target: Node, mutationHandlers: MutationHandlers): MutationObserver => {
 
     const {nodeAddedHandler, nodeRemovedHandler, nodeAttributesChangedHandler} = mutationHandlers;
@@ -11,22 +13,15 @@ export const observe = (target: Node, mutationHandlers: MutationHandlers): Mutat
             let nodesAdded = mutation.type === "childList" && mutation.addedNodes.length > 0;
             let attributesChanged = mutation.type === "attributes";
 
-            if (nodeAddedHandler) {
-                nodesAdded && mutation.addedNodes.forEach(
-                    (node: Node) => nodeAddedHandler.handle(node)
-                );
-            }
+            nodeAddedHandler && nodesAdded && toArray(mutation.addedNodes).forEach(
+                (node: Node) => nodeAddedHandler.handle(node)
+            );
 
-            if (nodeRemovedHandler) {
-                nodesRemoved && mutation.removedNodes.forEach(
-                    (node: Node) => nodeRemovedHandler.handle(node)
-                );
-            }
+            nodeRemovedHandler && nodesRemoved && toArray(mutation.removedNodes).forEach(
+                (node: Node) => nodeRemovedHandler.handle(node)
+            );
 
-            if (nodeAttributesChangedHandler) {
-                attributesChanged && nodeAttributesChangedHandler.handle(mutation.target);
-            }
-
+            nodeAttributesChangedHandler && attributesChanged && nodeAttributesChangedHandler.handle(mutation.target);
         });
     });
 

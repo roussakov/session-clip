@@ -1,6 +1,7 @@
-export const createPlaybackSequence = (playbackMetadata, recordings) => {
-  return recordings.map(record => (
-    Object.assign({}, record.data,
-      {offset: (record.data.time - ((new Date(playbackMetadata.createdAt)).getTime())) / 1000}
-    )));
-};
+const calculateTimeOffset = (time, startTime) => (time - ((new Date(startTime)).getTime())) / 1000;
+
+export const createPlaybackSequence = ({createdAt}, recordings) => recordings.map(({data, type, time}) => ({
+  type,
+  data,
+  offset: calculateTimeOffset(time, createdAt)
+}));

@@ -1,0 +1,29 @@
+.overlay-screen {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  position: fixed;
+  text-align: center;
+
+  h1, h3 {
+    color: white;
+    text-align: center;
+  }
+
+  .recorder-btn {
+    padding: 5px;
+  }
+}
+
+.time-left-reminder-block {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  color: #FFF;
+  line-height: 30px;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+}

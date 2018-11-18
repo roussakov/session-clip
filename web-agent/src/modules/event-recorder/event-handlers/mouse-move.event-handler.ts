@@ -1,8 +1,7 @@
 import {EventListener} from "../../../common/decorators/event-listener.class-decorator";
-import {MouseMove} from "../models/mouse-move";
-import {EventType} from "../models/event-type";
+import {MouseMoveData} from "../models/mouse-move.data";
 import {BaseEventHandler} from "./base-event-handler";
-import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/sequence-incrementor.service";
+import {createRecord} from "../../../common/modules/recordable";
 
 @EventListener({
     targetEl: window,
@@ -10,15 +9,13 @@ import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/se
 })
 export class MouseMoveEventHandler extends BaseEventHandler {
 
-    handler(e:MouseEvent):void {
-        const record:MouseMove = {
-            x:e.pageX,
-            y:e.pageY,
-            type: EventType.MouseMove,
-            time:(new Date).getTime(),
-            sequenceNum: getSequenceNumber()
+    handler(e: MouseEvent): void {
+        const mouseMoveData: MouseMoveData = {
+            x: e.pageX,
+            y: e.pageY,
         };
-        this.eventRecorderService.recordMouseMove(record);
+
+        this.eventRecorderService.recordMouseMove(createRecord("mouseMove", mouseMoveData));
     }
 
 }

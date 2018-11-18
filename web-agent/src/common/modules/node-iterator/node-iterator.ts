@@ -9,7 +9,6 @@ export const iterateNode = (rootNode: Node, onNode?: onNodeCallback) => {
 
         while (childNode) {
             iterate(childNode);
-
             childNode = childNode.nextSibling;
         }
     }

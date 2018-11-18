@@ -7,9 +7,11 @@ export class RecordingsService {
     constructor(private webSocket: WebSocket, private sessionStorage: SessionStorageService) {
     }
 
-    send(eventType: string, record: Recordable) {
-        record.sessionId = this.sessionStorage.get("sessionClip.sessionId");
-        this.webSocket.send(eventType, record);
+    send(recordType: string, recordBody: Recordable) {
+        this.webSocket.send(recordType, {
+            sessionId: this.sessionStorage.get("sessionClip.sessionId"),
+            ...recordBody
+        });
     }
 }
 

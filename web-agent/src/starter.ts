@@ -1,5 +1,5 @@
-import {startDomInitialStateCollector} from "./modules/node-mutation-recorder/dom-collector";
-import {startDomObserver} from "./modules/node-mutation-recorder/dom-observer";
+import {startDOMInitialStateCollector} from "./modules/node-mutation-recorder/dom-collector";
+import {startDOMMutationCollector} from "./modules/node-mutation-recorder/dom-mutation-collector";
 import {startEventCollector} from "./modules/event-recorder/event-collector";
 import {startSession} from "./core/start-session";
 
@@ -7,17 +7,21 @@ export interface SessionClipApplication {
     stop(): void
 }
 
+export interface BackgroundProcess {
+    stop(): void;
+}
+
 export const startApplication = (): Promise<SessionClipApplication> =>
     startSession().then(() => {
-        startDomInitialStateCollector();
+        startDOMInitialStateCollector();
 
-        const backgroundProcesses = [
-            startDomObserver(),
+        const backgroundProcesses: BackgroundProcess[] = [
+            startDOMMutationCollector(),
             startEventCollector()
         ];
 
         return {
-            stop: () => backgroundProcesses.forEach((process: any) => process.stop())
+            stop: () => backgroundProcesses.forEach(process => process.stop())
         }
     });
 

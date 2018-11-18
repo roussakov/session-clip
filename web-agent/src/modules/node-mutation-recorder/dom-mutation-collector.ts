@@ -1,17 +1,15 @@
-import {recordNodeMutationServiceInstance} from "./services/record-node-mutation.service";
+import {nodeMutationRecorderServiceInstance} from "./services/node-mutation-recorder.service";
 import {NodeRemovedHandler} from "./mutation-handlers/node-removed.handler";
 import {NodeAttributesChangedHandler} from "./mutation-handlers/node-attributes-changed.handler";
 import {NodeAddedHandler} from "./mutation-handlers/node-added.handler";
 import {observe} from "../../common/modules/dom-observer/dom-observer";
 
-export const startDomObserver = () => {
-    const handlers = [NodeAddedHandler, NodeRemovedHandler, NodeAttributesChangedHandler]
-        .map(handler => new handler(recordNodeMutationServiceInstance));
+export const startDOMMutationCollector = () => {
 
     const observer = observe(document.documentElement, {
-        nodeAddedHandler: handlers[0],
-        nodeRemovedHandler: handlers[1],
-        nodeAttributesChangedHandler: handlers[2]
+        nodeAddedHandler: new NodeAddedHandler(nodeMutationRecorderServiceInstance),
+        nodeRemovedHandler: new NodeRemovedHandler(nodeMutationRecorderServiceInstance),
+        nodeAttributesChangedHandler: new NodeAttributesChangedHandler(nodeMutationRecorderServiceInstance)
     });
 
     return {

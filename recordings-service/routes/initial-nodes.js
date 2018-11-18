@@ -5,16 +5,15 @@ const InitialNode = new require("./../models/initial-node");
 router.get('/:sessionId', function (req, res) {
 
     InitialNode.find({sessionId: req.params.sessionId})
-        .sort({'node.id': 1})
+        .sort({'data.id': 1})
         .then(nodes => nodes.map(node => ({
-            id: node.node.id,
-            nodeType: node.node.nodeType,
-            nodeName: node.node.nodeName,
-            attributes: node.node.attributes,
-            parentId: node.node.parentId,
-            prevSiblingId: node.node.prevSiblingId,
-            value: node.node.value,
-            time: node.node.time
+            id: node.data.id,
+            nodeType: node.data.nodeType,
+            nodeName: node.data.nodeName,
+            attributes: node.data.attributes,
+            parentId: node.data.parentId,
+            prevSiblingId: node.data.prevSiblingId,
+            value: node.data.value,
         })))
         .then(nodes => res.send(nodes));
 

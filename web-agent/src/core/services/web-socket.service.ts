@@ -14,7 +14,7 @@ export class WebSocket {
     connect():Promise<Socket> {
         this.socketConnection = this.socket.connect(this.options.uri);
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             this.socketConnection.on("connect", () => {
                 resolve(this.socketConnection)
             });

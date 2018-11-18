@@ -5,7 +5,7 @@ export class NodeDeletionPlayback {
 
   register(node) {
     this.timeLine.addCallback(() => {
-      this.virtualDom.removeNode(node.id)
+      this.virtualDom.removeNode(node.data.id)
     }, node.offset);
   }
 

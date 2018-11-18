@@ -5,7 +5,7 @@ export class NodeMutationPlayback {
 
   register(node) {
     this.timeLine.addCallback(() => {
-      this.virtualDom.setNodeAttributes(node.id, node.attributes);
+      this.virtualDom.setNodeAttributes(node.data.id, node.data.attributes);
     }, node.offset);
   }
 

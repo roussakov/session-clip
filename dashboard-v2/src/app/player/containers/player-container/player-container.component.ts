@@ -1,5 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, ViewChild} from '@angular/core';
-import {Session} from "../../../sessions/services/session.service";
+import {Component, EventEmitter, ViewChild} from '@angular/core';
 import {createPlayer, Player} from "../../lib/player";
 
 //temp class name, need to define terminology

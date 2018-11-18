@@ -9,8 +9,8 @@ export class ViewportResizePlayback {
   register(mutation) {
     this.timeLine.addCallback(() => {
       this.viewPortChanged.emit({
-        width: mutation.width,
-        height: mutation.height
+        width: mutation.data.width,
+        height: mutation.data.height
       })
     }, mutation.offset);
   }

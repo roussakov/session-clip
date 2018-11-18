@@ -1,9 +1,8 @@
 import {EventListener} from "../../../common/decorators/event-listener.class-decorator";
-import {InnerScroll} from "../models/inner-scroll";
-import {EventType} from "../models/event-type";
+import {InnerScrollData} from "../models/inner-scroll.data";
 import {BaseEventHandler} from "./base-event-handler";
-import {getSequenceNumber} from "../../../common/modules/sequence-incrementor/sequence-incrementor.service";
 import {getUUID} from "../../../common/modules/node-mutator/node-mutator";
+import {createRecord} from "../../../common/modules/recordable";
 
 @EventListener({
     targetEl: window,
@@ -13,19 +12,16 @@ import {getUUID} from "../../../common/modules/node-mutator/node-mutator";
 export class InnerScrollEventHandler extends BaseEventHandler {
 
     handler(e: Event, windowRef: Window): void {
-            //todo: refactor, add filters to EventListener configuration
+            //todo: refactor, add filters to EventListener decorator configuration
             if(e.target === windowRef.document) return;
 
-            const record: InnerScroll = {
+            const innerScrollData: InnerScrollData = {
                 nodeId: getUUID(e.target),
                 y: e.target.scrollTop,
                 x: e.target.scrollLeft,
-                type: EventType.InnerScroll,
-                time: (new Date).getTime(),
-                sequenceNum: getSequenceNumber()
             };
 
-            this.eventRecorderService.recordInnerScroll(record);
+            this.eventRecorderService.recordInnerScroll(createRecord("innerScroll", innerScrollData));
     }
 
 }

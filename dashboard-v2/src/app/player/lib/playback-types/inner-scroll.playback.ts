@@ -9,8 +9,8 @@ export class InnerScrollPlayback {
   register(mutation) {
     this.timeLine.addCallback(() => {
 
-      this.virtualDom.findNode(mutation.nodeId)
-        .scrollTo(mutation.x, mutation.y);
+      this.virtualDom.findNode(mutation.data.nodeId)
+        .scrollTo(mutation.data.x, mutation.data.y);
 
     }, mutation.offset);
   }

@@ -5,8 +5,8 @@ export class InputPlayback {
 
   register(mutation) {
     this.timeLine.addCallback(() => {
-      const node = this.virtualDom.findNode(mutation.id);
-      node.value = mutation.value;
+      const node = this.virtualDom.findNode(mutation.data.id);
+      node.value = mutation.data.value;
     }, mutation.offset);
 
   }

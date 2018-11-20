@@ -50,7 +50,35 @@ function connect() {
     return mongoose.connect(devConfig.db, options).connection;
 }
 
-amqp.connect('amqp://rabbitmq', (err, conn) => {
+//todo: This is a quick and dirty solution, required to implement in fault tolerance fashion
+//using exponential backoffs and other best practices
+const amqpConnect = (url) => {
+
+    return new Promise((resolve, reject) => {
+
+        tryToConnect();
+
+        function tryToConnect() {
+            console.log("RECORDINGS-SERVICE trying to establish connection with AMQP");
+            amqp.connect(url, connectionStrategy);
+        }
+
+        function connectionStrategy(err, conn) {
+            if (err) {
+                console.log("RECORDINGS-SERVICE failed to establish connection with AMQP, retry in 3 sec");
+                setTimeout(tryToConnect, 3000);
+                return
+            }
+
+            console.log("RECORDINGS-SERVICE successfully connected to AMQP");
+            resolve(conn);
+        }
+
+    });
+};
+
+amqpConnect("amqp://rabbitmq").then(conn => {
+
     conn.createChannel((err, ch) => {
 
         consumeFromQueue(ch, "nodeInitialStateRecords", handleNodeInitialStateMessage);

@@ -1,0 +1,77 @@
+version: "3.4"
+services:
+  socket-server:
+    image: sessionclip/socket-server
+    build:
+      context: ./socket-server
+      dockerfile: Dockerfile
+    links:
+    - mongo
+    - rabbitmq
+    ports:
+    - "8081:3000"
+    volumes:
+    - ./socket-server:/app
+
+  session-service:
+    image: sessionclip/session-service
+    build:
+      context: ./session-service
+      dockerfile: Dockerfile
+    links:
+    - mongo
+    ports:
+    - "8082:3000"
+    volumes:
+    - ./session-service:/app
+
+  recordings-service:
+    image: sessionclip/recordings-service
+    build:
+      context: ./recordings-service
+      dockerfile: Dockerfile
+    links:
+    - mongo
+    - rabbitmq
+    ports:
+    - "8084:3000"
+    volumes:
+    - ./recordings-service:/app
+
+  web-agent:
+    image: sessionclip/web-agent
+    build:
+      context: ./web-agent
+      dockerfile: Dockerfile
+    links:
+    - socket-server
+    ports:
+    - "8083:1234"
+    volumes:
+    - ./web-agent:/app
+
+  mongo:
+    image: mongo:3.6.2
+    ports:
+    - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:3.7.7-management-alpine
+    ports:
+    - "15672:15672"
+
+  dashboard:
+    image: sessionclip/dashboard
+    build:
+      context: ./dashboard-v2
+      dockerfile: Dockerfile
+    ports:
+    - "3000:80"
+
+  demo-site:
+    image: sessionclip/demo-site
+    build:
+      context: ./demo-dashboard
+      dockerfile: Dockerfile
+    ports:
+    - "3001:80"

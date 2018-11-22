@@ -75,3 +75,16 @@ services:
       dockerfile: Dockerfile
     ports:
     - "3001:80"
+
+  reverse-proxy:
+    image: sessionclip/reverse-proxy
+    build:
+      context: ./reverse-proxy
+      dockerfile: Dockerfile
+    depends_on:
+      - session-service
+      - recordings-service
+      - demo-site
+      - dashboard
+    ports:
+    - "8080:80"

@@ -45,10 +45,6 @@ services:
       dockerfile: Dockerfile
     links:
     - socket-server
-    ports:
-    - "8083:1234"
-    volumes:
-    - ./web-agent:/app
 
   mongo:
     image: mongo:3.6.2
@@ -86,5 +82,6 @@ services:
       - recordings-service
       - demo-site
       - dashboard
+      - web-agent
     ports:
     - "8080:80"

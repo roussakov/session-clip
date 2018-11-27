@@ -1,17 +1,6 @@
-# create a file named Dockerfile
-FROM node:latest
+FROM nginx:alpine
 
-RUN mkdir /app
+COPY nginx.conf /etc/nginx/nginx.conf
 
-WORKDIR /app
-
-# RUN npm install -g nodemon
-
-# COPY package.json /app
-# RUN npm install
-
-# COPY . /app
-
-EXPOSE 1234
-
-CMD ["npm", "start"]
+WORKDIR /usr/share/nginx/html
+COPY dist/index.js ./index.js

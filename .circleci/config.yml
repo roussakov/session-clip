@@ -5,6 +5,6 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: docker-compose build --pull
+      - run: docker-compose build --file docker-compose.prod.yml --pull
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: docker-compose push
+      - run: docker-compose push --file docker-compose.prod.yml

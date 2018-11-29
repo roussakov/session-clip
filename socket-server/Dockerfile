@@ -1,5 +1,5 @@
 # create a file named Dockerfile
-FROM node:latest
+FROM node:8.14-alpine
 
 RUN mkdir /app
 

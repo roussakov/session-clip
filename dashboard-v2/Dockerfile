@@ -1,6 +1,15 @@
+FROM node:8.14-alpine
+RUN mkdir /app
+
+COPY . /app
+
+WORKDIR /app
+
+RUN npm install
+RUN npm run build --prod
+
 FROM nginx:alpine
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=0 /app/dist/dashboard-v2 /usr/share/nginx/html
 
-WORKDIR /usr/share/nginx/html
-COPY dist/dashboard-v2 .
+COPY nginx.conf /etc/nginx/nginx.conf

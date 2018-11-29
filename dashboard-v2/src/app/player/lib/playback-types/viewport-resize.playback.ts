@@ -1,9 +1,8 @@
-import {ViewPortChange} from "../../../../../../dashboard/src/app/player/store/models/mutation.model";
 import {EventEmitter} from "@angular/core";
 
 export class ViewportResizePlayback {
 
-  constructor(private timeLine, private viewPortChanged: EventEmitter<ViewPortChange>) {
+  constructor(private timeLine, private viewPortChanged: EventEmitter<any>) {
   }
 
   register(mutation) {

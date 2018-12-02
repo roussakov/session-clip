@@ -56,22 +56,6 @@ services:
     ports:
     - "15672:15672"
 
-  dashboard:
-    image: sessionclip/dashboard
-    build:
-      context: ./dashboard-v2
-      dockerfile: Dockerfile
-    ports:
-    - "3000:80"
-
-  demo-site:
-    image: sessionclip/demo-site
-    build:
-      context: ./demo-dashboard
-      dockerfile: Dockerfile
-    ports:
-    - "3001:80"
-
   reverse-proxy:
     image: sessionclip/reverse-proxy
     build:
@@ -80,9 +64,10 @@ services:
     depends_on:
       - session-service
       - recordings-service
-      - demo-site
-      - dashboard
       - web-agent
       - socket-server
     ports:
-    - "8080:80"
+      - "8080:80"
+    environment:
+      - NGINX_HOST=sessionclip.localhost
+    command: /bin/bash -c "envsubst '$$NGINX_HOST' < /etc/nginx/custom.conf > /etc/nginx/nginx.conf && exec nginx -g 'daemon off;'"

@@ -71,4 +71,7 @@ services:
       - web-agent
       - socket-server
     ports:
-    - "8080:80"
+    - "80:80"
+    environment:
+    - NGINX_HOST=sessionclip.com
+    command: /bin/bash -c "envsubst '$$NGINX_HOST' < /etc/nginx/custom.conf > /etc/nginx/nginx.conf && exec nginx -g 'daemon off;'"

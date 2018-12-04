@@ -64,7 +64,7 @@ services:
     image: sessionclip/reverse-proxy
     build:
       context: ./reverse-proxy
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     depends_on:
       - session-service
       - recordings-service

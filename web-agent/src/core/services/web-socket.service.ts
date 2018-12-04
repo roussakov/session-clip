@@ -2,7 +2,7 @@ import Socket = SocketIOClient.Socket;
 import * as io from "socket.io-client";
 
 export interface WebSocketOptions {
-    uri:string;
+    url:string;
 }
 
 export class WebSocket {
@@ -12,7 +12,7 @@ export class WebSocket {
     constructor(private socket:SocketIOClientStatic, private options: WebSocketOptions) {}
 
     connect():Promise<Socket> {
-        this.socketConnection = this.socket.connect(this.options.uri);
+        this.socketConnection = this.socket.connect(this.options.url);
 
         return new Promise((resolve) => {
             this.socketConnection.on("connect", () => {
@@ -27,4 +27,4 @@ export class WebSocket {
     }
 }
 
-export const webSocketInstance = new WebSocket(io, {uri:"http://connect.sessionclip.localhost:8080"});
+export const webSocketInstance = new WebSocket(io, {url:"//" + process.env.API_HOST});

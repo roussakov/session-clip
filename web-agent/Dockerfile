@@ -1,8 +1,9 @@
 FROM node:8.14-alpine
 RUN mkdir /app
 
-COPY . /app
+ARG API_HOST
 
+COPY . /app
 WORKDIR /app
 
 RUN npm install

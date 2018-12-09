@@ -82,6 +82,8 @@ export class PlayerContainerComponent {
 
   private player: Player;
 
+  public loadingPlayerContent = true;
+
   public playerProgress: EventEmitter<number>;
 
   @ViewChild("iFrameWrapper") iFrameWrapper;
@@ -98,6 +100,8 @@ export class PlayerContainerComponent {
   }
 
   setPlayerData(DOMState, recordings, sessionMetadata) {
+    this.loadingPlayerContent = false;
+
     this.player = createPlayer(
       sessionMetadata,
       DOMState,

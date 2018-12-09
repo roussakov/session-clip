@@ -25,7 +25,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/gsap/umd/TweenMax.js",
+              "./node_modules/gsap/umd/ScrollToPlugin.js"
+            ]
           },
           "configurations": {
             "production": {

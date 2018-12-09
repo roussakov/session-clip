@@ -5,9 +5,11 @@
   <app-playback-progress-bar [progress]="playerProgress"></app-playback-progress-bar>
 
 </mat-toolbar>
+<div class="loader-indicator">
+  <mat-progress-spinner *ngIf="loadingPlayerContent" mode="indeterminate"></mat-progress-spinner>
+</div>
 
-
-<section #playerElement>
+<section [class.ready]="!loadingPlayerContent" #playerElement>
   <div #playbackContainerElement id="playbackContainer">
     <div #iFrameWrapper>
       <iframe #iFrameRef

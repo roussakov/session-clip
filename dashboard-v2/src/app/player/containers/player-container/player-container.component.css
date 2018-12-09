@@ -23,9 +23,13 @@ app-playback-control-panel {
 section {
   width: 100%;
   height: calc(100% - 45px);
-  display: block;
+  display: none;
   position: relative;
   background: #FFF;
+}
+
+section.ready {
+  display: block;
 }
 
 #playbackContainer {
@@ -37,4 +41,10 @@ iframe {
   position: absolute;
 }
 
-
+.loader-indicator {
+  position: absolute;
+  display: block;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}

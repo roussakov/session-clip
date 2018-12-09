@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "http://sessionclip.com:8080",
+    "target": "http://dashboard.sessionclip.localhost:8080",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

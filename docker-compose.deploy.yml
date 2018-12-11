@@ -2,23 +2,43 @@ version: "3.2"
 services:
   socket-server:
     image: sessionclip/socket-server
+    build:
+      context: ./socket-server
+      dockerfile: Dockerfile.prod
     links:
     - mongo
     - rabbitmq
+    volumes:
+    - ./socket-server:/app
 
   session-service:
     image: sessionclip/session-service
+    build:
+      context: ./session-service
+      dockerfile: Dockerfile.prod
     links:
     - mongo
+    volumes:
+    - ./session-service:/app
 
   recordings-service:
     image: sessionclip/recordings-service
+    build:
+      context: ./recordings-service
+      dockerfile: Dockerfile.prod
     links:
     - mongo
     - rabbitmq
+    volumes:
+    - ./recordings-service:/app
 
   web-agent:
     image: sessionclip/web-agent
+    build:
+      context: ./web-agent
+      dockerfile: Dockerfile
+      args:
+      - API_HOST=connect.sessionclip.com
     links:
     - socket-server
 
@@ -30,12 +50,25 @@ services:
 
   dashboard:
     image: sessionclip/dashboard
+    build:
+      context: ./dashboard-v2
+      dockerfile: Dockerfile
+      args:
+      - ENV=production
 
   demo-site:
     image: sessionclip/demo-site
+    build:
+      context: ./demo-dashboard
+      dockerfile: Dockerfile
+      args:
+      - ENV=production
 
   reverse-proxy:
     image: sessionclip/reverse-proxy
+    build:
+      context: ./reverse-proxy
+      dockerfile: Dockerfile
     depends_on:
       - session-service
       - recordings-service

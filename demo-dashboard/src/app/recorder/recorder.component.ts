@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-recorder',
@@ -16,6 +17,12 @@ export class RecorderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getRecordingUrl() {
+    const sessionId = window.sessionStorage.getItem("sessionClip.sessionId");
+    const dashboardUrl = environment.dashboardUrl;
+    return `${dashboardUrl}/sessions/${sessionId}`
   }
 
   onCompletedHandler() {

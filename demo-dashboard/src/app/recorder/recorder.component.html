@@ -3,7 +3,7 @@
   <h1>Check this out!</h1>
   <h3>In order to start record please press the button below</h3>
 
-  <button class="recorder-btn start-record-btn" (click)="startRecord()">Start record</button>
+  <button class="btn btn-primary" (click)="startRecord()">Start record</button>
 
 
 </div>
@@ -17,7 +17,7 @@
 <div class="overlay-screen" *ngIf="!recording && recordingEnd">
 
   <h1>Press the button in order to see your recorded session</h1>
-  <button class="recorder-btn">Watch</button>
+  <a href="{{getRecordingUrl()}}" class="btn btn-primary">Watch</a>
 
 </div>
 

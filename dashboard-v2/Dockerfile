@@ -1,15 +1,11 @@
-FROM node:8.14-alpine
+FROM node:8.14-alpine as builder
 RUN mkdir /app
-
 COPY . /app
-
 WORKDIR /app
-
+ARG ENV
 RUN npm install
-RUN npm run build --prod
+RUN npm run build:${ENV}
 
 FROM nginx:alpine
-
-COPY --from=0 /app/dist/dashboard-v2 /usr/share/nginx/html
-
+COPY --from=builder /app/dist/dashboard-v2 /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf

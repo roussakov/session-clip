@@ -13,6 +13,22 @@ services:
     volumes:
     - ./socket-server:/app
 
+  dashboard:
+    image: sessionclip/dashboard
+    build:
+      context: ./dashboard-v2
+      dockerfile: Dockerfile
+      args:
+      - ENV=development
+
+  demo-site:
+    image: sessionclip/demo-site
+    build:
+      context: ./demo-dashboard
+      dockerfile: Dockerfile
+      args:
+      - ENV=development
+
   session-service:
     image: sessionclip/session-service
     build:
@@ -44,7 +60,7 @@ services:
       context: ./web-agent
       dockerfile: Dockerfile
       args:
-      - API_HOST=connect.sessionclip.localhost
+      - API_HOST=connect.sessionclip.localhost:8080
     links:
     - socket-server
 
@@ -67,7 +83,9 @@ services:
       - session-service
       - recordings-service
       - web-agent
+      - demo-site
       - socket-server
+      - dashboard
     ports:
       - "8080:80"
     environment:

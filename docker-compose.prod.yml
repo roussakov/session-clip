@@ -53,18 +53,22 @@ services:
     build:
       context: ./dashboard-v2
       dockerfile: Dockerfile
+      args:
+      - ENV=production
 
   demo-site:
     image: sessionclip/demo-site
     build:
       context: ./demo-dashboard
       dockerfile: Dockerfile
+      args:
+      - ENV=production
 
   reverse-proxy:
     image: sessionclip/reverse-proxy
     build:
       context: ./reverse-proxy
-      dockerfile: Dockerfile.prod
+      dockerfile: reverse-proxy/Dockerfile
     depends_on:
       - session-service
       - recordings-service

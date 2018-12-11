@@ -5,4 +5,5 @@
 
 export const environment = {
   production: false,
+  dashboardUrl: "http://dashboard.sessionclip.localhost:8080"
 };

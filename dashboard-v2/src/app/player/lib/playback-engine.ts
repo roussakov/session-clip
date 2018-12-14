@@ -20,13 +20,14 @@ export interface PlaybackViewPortSize {
 export class PlaybackEngine {
 
   readonly timeLine: TimelineMax;
-  private cursorRef = createMouseCursor();
+  private cursorRef:any;
   private _viewPortChanged = new EventEmitter<PlaybackViewPortSize>();
   private _onFrameUpdate: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private windowRef: PlaybackWindowRef, private virtualDom) {
+  constructor(private windowRef: PlaybackWindowRef, private virtualDom, private osType) {
     this.timeLine = new TimelineMax({paused: true, onUpdate: this.onUpdateHandler.bind(this)});
 
+    this.cursorRef = createMouseCursor(osType);
     this.virtualDom.getRootNode().appendChild(this.cursorRef);
     this.windowRef.renderDOM(this.virtualDom.getRootNode());
 

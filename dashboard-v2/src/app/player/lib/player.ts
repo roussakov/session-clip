@@ -98,7 +98,8 @@ export const createPlayer = (
   //build virtual dom based on DOM snapshot
   const virtualDOM = createVirtualDOM(DOMState, playbackMetadata.userInfo.origin);
 
-  const playbackEngine = new PlaybackEngine(windowRef, virtualDOM);
+  let osType = playbackMetadata.platform.os;
+  const playbackEngine = new PlaybackEngine(windowRef, virtualDOM, osType);
   playbackEngine.sequence = createPlaybackSequence(playbackMetadata, recordings);
 
   const options = {
@@ -108,7 +109,3 @@ export const createPlayer = (
 
   return new Player(options, iframeWrapper, playerElement, playbackContainerElement, playbackEngine);
 };
-
-
-
-

@@ -8,7 +8,6 @@ import {NodeMutationPlayback} from "./playback-types/node-mutation.playback";
 import {MouseClickPlayback} from "./playback-types/mouse-click.playback";
 import {PlaybackWindowRef} from "../containers/player-container/player-container.component";
 import {EventEmitter} from "@angular/core";
-import {createMouseCursor} from "./assets/mouse-cursor";
 import {InputPlayback} from "./playback-types/input.playback";
 import {InnerScrollPlayback} from "./playback-types/inner-scroll.playback";
 
@@ -18,16 +17,16 @@ export interface PlaybackViewPortSize {
 }
 
 export class PlaybackEngine {
-
   readonly timeLine: TimelineMax;
-  private cursorRef:any;
+  //private cursorRef = createMouseCursor(this.os);
+  private cursorRef: HTMLElement;
   private _viewPortChanged = new EventEmitter<PlaybackViewPortSize>();
   private _onFrameUpdate: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private windowRef: PlaybackWindowRef, private virtualDom, private osType) {
+  constructor(private windowRef: PlaybackWindowRef, private virtualDom, private mouseCursor) {
     this.timeLine = new TimelineMax({paused: true, onUpdate: this.onUpdateHandler.bind(this)});
 
-    this.cursorRef = createMouseCursor(osType);
+    this.cursorRef = mouseCursor;
     this.virtualDom.getRootNode().appendChild(this.cursorRef);
     this.windowRef.renderDOM(this.virtualDom.getRootNode());
 

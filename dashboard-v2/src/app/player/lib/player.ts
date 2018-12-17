@@ -21,7 +21,6 @@ export class Player {
 
   private _currentTime: EventEmitter<CurrentTime> = new EventEmitter<CurrentTime>();
   private _totalTime: number;
-  private cursorRef = createMouseCursor('Mac');
 
   constructor(
     private options: PlayerOptions,
@@ -99,7 +98,7 @@ export const createPlayer = (
   playbackContainerElement: PlaybackContainerElement) => {
   //build virtual dom based on DOM snapshot
   const virtualDOM = createVirtualDOM(DOMState, playbackMetadata.userInfo.origin);
-  const mouseCursor = createMouseCursor(playbackMetadata.platform.os); 
+  const mouseCursor = createMouseCursor(playbackMetadata.platform.os);
 
   const playbackEngine = new PlaybackEngine(windowRef, virtualDOM, mouseCursor);
   playbackEngine.sequence = createPlaybackSequence(playbackMetadata, recordings);

@@ -20,7 +20,7 @@ export class PlaybackEngine {
   readonly timeLine: TimelineMax;
   //private cursorRef = createMouseCursor(this.os);
   private cursorRef: HTMLElement;
-  private _viewPortChanged = new EventEmitter<PlaybackViewPortSize>();
+  private _viewPortChanged = new EventEmitter<PlaybackViewPortSize>(); 
   private _onFrameUpdate: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private windowRef: PlaybackWindowRef, private virtualDom, private mouseCursor) {

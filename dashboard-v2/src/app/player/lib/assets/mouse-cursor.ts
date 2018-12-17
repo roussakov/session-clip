@@ -1,7 +1,7 @@
-export const createMouseCursor = () => {
+export const createMouseCursor = (osType) => {
   const div = document.createElement("div");
   div.style.width = "20px";
-  div.style.backgroundImage = "url('/assets/images/player/cursor.svg')";
+  div.style.backgroundImage = ((osType.includes('Mac')) ? "url('/assets/images/player/mouse_mac.png')" : "url('/assets/images/player/mouse_windows.png')");
   div.style.height = "20px";
   div.style.left = "0px";
   div.style.top = "0px";

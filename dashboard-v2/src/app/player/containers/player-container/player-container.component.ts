@@ -1,4 +1,4 @@
-import {Component, EventEmitter, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, ViewChild} from '@angular/core';
 import {createPlayer, Player} from "../../lib/player";
 
 //temp class name, need to define terminology
@@ -60,12 +60,12 @@ export class PlaybackContainerElement {
   constructor(private el) {
   }
 
-  set left(offset) {
-    this.el.style.marginLeft = `${offset}px`;
+  set left(margin) {
+    this.el.style.marginLeft = `${margin}px`;
   }
 
-  set top(offset) {
-    this.el.style.marginTop = `${offset}px`;
+  set top(margin) {
+    this.el.style.marginTop = `${margin}px`;
   }
 
   set scale(scale) {
@@ -91,6 +91,8 @@ export class PlayerContainerComponent {
   @ViewChild("playerElement") playerElement;
   @ViewChild("playbackContainerElement") playbackContainerElement;
 
+  constructor(private ref: ChangeDetectorRef) {}
+
   playClickHandler() {
     this.player.play();
   }
@@ -101,6 +103,8 @@ export class PlayerContainerComponent {
 
   setPlayerData(DOMState, recordings, sessionMetadata) {
     this.loadingPlayerContent = false;
+
+    this.ref.detectChanges();
 
     this.player = createPlayer(
       sessionMetadata,

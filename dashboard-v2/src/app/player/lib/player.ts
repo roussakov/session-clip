@@ -8,6 +8,7 @@ import {
 } from "../containers/player-container/player-container.component";
 import {calculateScale} from "./utils/calculate-scale";
 import {createPlaybackSequence} from "./playback-sequence";
+import {fromEvent} from "rxjs";
 
 export type CurrentTime = number;
 
@@ -21,6 +22,7 @@ export class Player {
   private _currentTime: EventEmitter<CurrentTime> = new EventEmitter<CurrentTime>();
   private _totalTime: number;
 
+  //todo: merge subscriptions in order to unsubscribe when player destroyed removed
   constructor(
     private options: PlayerOptions,
     private iframeWrapper: IFrameWrapper,
@@ -30,6 +32,9 @@ export class Player {
   ) {
     this.iframeWrapper.width = options.width;
     this.iframeWrapper.height = options.height;
+    this.keepResponsive();
+
+    fromEvent(window, "resize").subscribe(() => this.keepResponsive());
 
     this.playbackEngine.onFrameUpdate.subscribe(progress => this._currentTime.emit(progress));
 
@@ -43,8 +48,10 @@ export class Player {
   }
 
   private keepResponsive() {
-    const sectionWidth = this.playerEl.width,
-      sectionHeight = this.playerEl.height;
+    const offsetWidth = 60, offsetHeight = 30;
+
+    const sectionWidth = this.playerEl.width - offsetWidth,
+      sectionHeight = this.playerEl.height - offsetHeight;
 
     const scale = calculateScale(
       sectionWidth,
@@ -53,15 +60,13 @@ export class Player {
       this.iframeWrapper.height
     );
 
-
-    const marginLeft = (sectionWidth - this.iframeWrapper.width * scale) / 2;
-    const marginTop = (sectionHeight - this.iframeWrapper.height * scale) / 2;
+    const marginLeft = (sectionWidth - this.iframeWrapper.width * scale) / 2 + (offsetWidth / 2);
+    const marginTop = (sectionHeight - this.iframeWrapper.height * scale) / 2 + (offsetHeight / 2);
 
     this.playbackContainerEl.left = marginLeft;
     this.playbackContainerEl.top = marginTop;
 
     this.playbackContainerEl.scale = scale;
-
   }
 
   get currentTime(): EventEmitter<CurrentTime> {

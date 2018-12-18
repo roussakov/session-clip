@@ -8,6 +8,7 @@ import {
 } from "../containers/player-container/player-container.component";
 import {calculateScale} from "./utils/calculate-scale";
 import {createPlaybackSequence} from "./playback-sequence";
+import {createMouseCursor} from "./assets/mouse-cursor";
 
 export type CurrentTime = number;
 
@@ -27,6 +28,7 @@ export class Player {
     private playerEl: PlayerElement,
     private playbackContainerEl: PlaybackContainerElement,
     private playbackEngine: PlaybackEngine
+
   ) {
     this.iframeWrapper.width = options.width;
     this.iframeWrapper.height = options.height;
@@ -94,11 +96,11 @@ export const createPlayer = (
   iframeWrapper: IFrameWrapper,
   playerElement: PlayerElement,
   playbackContainerElement: PlaybackContainerElement) => {
-
   //build virtual dom based on DOM snapshot
   const virtualDOM = createVirtualDOM(DOMState, playbackMetadata.userInfo.origin);
+  const mouseCursor = createMouseCursor(playbackMetadata.platform.os);
 
-  const playbackEngine = new PlaybackEngine(windowRef, virtualDOM);
+  const playbackEngine = new PlaybackEngine(windowRef, virtualDOM, mouseCursor);
   playbackEngine.sequence = createPlaybackSequence(playbackMetadata, recordings);
 
   const options = {
@@ -108,7 +110,3 @@ export const createPlayer = (
 
   return new Player(options, iframeWrapper, playerElement, playbackContainerElement, playbackEngine);
 };
-
-
-
-

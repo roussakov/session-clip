@@ -8,7 +8,6 @@ import {NodeMutationPlayback} from "./playback-types/node-mutation.playback";
 import {MouseClickPlayback} from "./playback-types/mouse-click.playback";
 import {PlaybackWindowRef} from "../containers/player-container/player-container.component";
 import {EventEmitter} from "@angular/core";
-import {createMouseCursor} from "./assets/mouse-cursor";
 import {InputPlayback} from "./playback-types/input.playback";
 import {InnerScrollPlayback} from "./playback-types/inner-scroll.playback";
 
@@ -18,16 +17,14 @@ export interface PlaybackViewPortSize {
 }
 
 export class PlaybackEngine {
-
   readonly timeLine: TimelineMax;
-  private cursorRef = createMouseCursor();
   private _viewPortChanged = new EventEmitter<PlaybackViewPortSize>();
   private _onFrameUpdate: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private windowRef: PlaybackWindowRef, private virtualDom) {
+  constructor(private windowRef: PlaybackWindowRef, private virtualDom, private mouseCursor) {
     this.timeLine = new TimelineMax({paused: true, onUpdate: this.onUpdateHandler.bind(this)});
 
-    this.virtualDom.getRootNode().appendChild(this.cursorRef);
+    this.virtualDom.getRootNode().appendChild(this.mouseCursor);
     this.windowRef.renderDOM(this.virtualDom.getRootNode());
 
     window["timeline"] = this.timeLine;
@@ -47,7 +44,7 @@ export class PlaybackEngine {
     const playbackTypesMap = {
       "innerScroll": new InnerScrollPlayback(this.timeLine, this.windowRef, this.virtualDom),
       "windowScroll": new WindowScrollPlayback(this.timeLine, this.windowRef),
-      "mouseMove": new MouseMovePlayback(this.timeLine, this.cursorRef),
+      "mouseMove": new MouseMovePlayback(this.timeLine, this.mouseCursor),
       "click": new MouseClickPlayback(this.timeLine, this.virtualDom),
       "input": new InputPlayback(this.timeLine, this.virtualDom),
       "viewportResize": new ViewportResizePlayback(this.timeLine, this._viewPortChanged),

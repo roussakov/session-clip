@@ -113,7 +113,3 @@ export const createPlayer = (
 
   return new Player(options, iframeWrapper, playerElement, playbackContainerElement, playbackEngine);
 };
-
-
-
-

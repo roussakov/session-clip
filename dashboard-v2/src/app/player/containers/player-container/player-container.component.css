@@ -32,6 +32,13 @@ section.ready {
   display: block;
 }
 
+.glass-overlay {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+}
+
 #playbackContainer {
   transform-origin: left top;
   position: absolute;

@@ -1,23 +1,30 @@
-<div class="overlay-screen" *ngIf="!recording">
-
-  <h1>Check this out!</h1>
-  <h3>In order to start record please press the button below</h3>
-
-  <button class="btn btn-primary" (click)="startRecord()">Start record</button>
-
-
-</div>
-
 <div class="time-left-reminder-block" *ngIf="recording">
   <ng-container [counter]="counter" (onCompleted)="onCompletedHandler()" [interval]="interval" (value)="value = $event">
     <span>Time left: {{value}}</span>
   </ng-container>
 </div>
 
-<div class="overlay-screen" *ngIf="!recording && recordingEnd">
+<modal #startModal>
+  <modal-header>
+    <h3>Session Recorder Wizard</h3>
+  </modal-header>
+  <modal-content>
+    <p>In order to start recording current user session press the "Record" below</p>
+  </modal-content>
+  <modal-footer>
+    <button class="btn btn-primary" (click)="startRecord()">Record</button>
+  </modal-footer>
+</modal>
 
-  <h1>Press the button in order to see your recorded session</h1>
-  <a href="{{getRecordingUrl()}}" class="btn btn-primary">Watch</a>
-
-</div>
+<modal #stopModal>
+  <modal-header>
+    <h3>Session Recorder Wizard</h3>
+  </modal-header>
+  <modal-content>
+    <p>Record completed. In order to watch recorded session click the button below</p>
+  </modal-content>
+  <modal-footer>
+    <a class="btn btn-primary" href="{{getRecordingUrl()}}">Watch</a>
+  </modal-footer>
+</modal>
 

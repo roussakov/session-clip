@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecorderComponent } from './recorder/recorder.component';
 import { CounterDirective } from './recorder/directives/counter.directive';
+import {ModalModule} from "ngx-modal";
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { CounterDirective } from './recorder/directives/counter.directive';
     FormsModule,
     PagesModule,
     routing,
+    ModalModule
   ],
   declarations: [
     AppComponent,

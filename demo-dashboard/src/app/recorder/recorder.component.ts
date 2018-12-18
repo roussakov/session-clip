@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {environment} from "../../environments/environment";
 
 @Component({
@@ -6,17 +6,18 @@ import {environment} from "../../environments/environment";
   templateUrl: './recorder.component.html',
   styleUrls: ['./recorder.component.scss']
 })
-export class RecorderComponent implements OnInit {
+export class RecorderComponent {
   counter = 20;
   interval = 1000;
-
   recording = false;
-  recordingEnd = false;
 
+  @ViewChild("startModal") startModal;
+  @ViewChild("stopModal") stopModal;
 
   constructor() { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.startModal.open()
   }
 
   getRecordingUrl() {
@@ -26,12 +27,13 @@ export class RecorderComponent implements OnInit {
   }
 
   onCompletedHandler() {
-    window["sessionClip"].stop();
     this.recording = false;
-    this.recordingEnd = true;
+    window["sessionClip"].stop();
+    this.stopModal.open();
   }
 
   startRecord() {
+    this.startModal.close();
     window["sessionClip"].start();
     this.recording = true;
   }
